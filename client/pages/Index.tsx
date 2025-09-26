@@ -23,7 +23,7 @@ export default function Index() {
           viewport={{ once: true, margin: "-100px" }}
           className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {["Full-Stack Java", "React + TypeScript", "Python & Django"].map((title, i) => (
+          {["Python + DSA", "Databricks", "AI-Data Analytics"].map((title, i) => (
             <motion.article
               key={title}
               variants={fadeInUp(i * 0.05)}

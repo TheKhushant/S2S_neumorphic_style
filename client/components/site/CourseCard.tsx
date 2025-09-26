@@ -27,21 +27,10 @@ export default function CourseCard({ course }: { course: Course }) {
           <Button className="bg-primary text-primary-foreground hover:bg-primary/90">Enroll</Button>
         </Link>
         <Link to={`/courses/${course.id}`} className="inline-flex items-center text-sm font-semibold text-primary hover:underline">View Details</Link>
-        <button onClick={() => setOpen((s) => !s)} className="ml-auto text-sm text-foreground/70 underline">
-          {open ? "Hide Syllabus" : "View Syllabus"}
-        </button>
+
       </div>
 
-      {open && (
-        <div className="mt-4 rounded-md border bg-card p-4">
-          <h4 className="mb-2 text-sm font-bold">Syllabus Preview</h4>
-          <ul className="list-disc space-y-1 pl-5 text-sm text-foreground/80">
-            {course.syllabus.slice(0, 6).map((s, i) => (
-              <li key={i}>{s}</li>
-            ))}
-          </ul>
-        </div>
-      )}
+
     </article>
   );
 }

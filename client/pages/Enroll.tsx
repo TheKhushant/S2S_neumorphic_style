@@ -2,6 +2,7 @@ import Layout from "@/components/site/Layout";
 import { useParams, useNavigate } from "react-router-dom";
 import { getCourseById } from "@/data/courses";
 import { useState } from "react";
+import * as XLSX from "xlsx";
 
 export default function Enroll() {
   const { id } = useParams();
@@ -16,6 +17,7 @@ export default function Enroll() {
     qualification: "",
     city: "",
     message: "",
+    timestamp: new Date().toISOString(),
   });
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) {
@@ -24,10 +26,73 @@ export default function Enroll() {
 
   function submit(e: React.FormEvent) {
     e.preventDefault();
-    // Here you would call API to submit enrollment; we'll fake success and navigate to thank you placeholder
-    console.log("Enroll submitted", form);
+
+    // Prepare data for Excel
+    const enrollmentData = [
+      {
+        "Course": form.course,
+        "Name": form.name,
+        "Email": form.email,
+        "Phone": form.phone,
+        "Qualification": form.qualification,
+        "City": form.city,
+        "Message": form.message,
+        "Timestamp": new Date().toLocaleString('en-IN', {
+          timeZone: 'Asia/Kolkata',
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit'
+        }),
+      }
+    ];
+
+    // Create workbook and worksheet
+    const wb = XLSX.utils.book_new();
+    const ws = XLSX.utils.json_to_sheet(enrollmentData);
+
+    // Auto-size columns
+    const colWidths = [
+      { wch: 20 }, // Course
+      { wch: 15 }, // Name
+      { wch: 20 }, // Email
+      { wch: 15 }, // Phone
+      { wch: 20 }, // Qualification
+      { wch: 15 }, // City
+      { wch: 30 }, // Message
+      { wch: 25 }, // Timestamp
+    ];
+    ws['!cols'] = colWidths;
+
+    // Append worksheet to workbook
+    XLSX.utils.book_append_sheet(wb, ws, "Enrollments");
+
+    // Add timestamp to filename
+    const timestamp = new Date().toISOString().slice(0, 19).replace(/:/g, '-');
+    const filename = `enrollment-${timestamp}.xlsx`;
+
+    // Generate and download Excel file
+    XLSX.writeFile(wb, filename);
+
+    // Log for debugging
+    console.log("Enrollment data saved to Excel:", form);
+
+    // Navigate to home (or show success message)
     navigate("/", { replace: true });
-    // Ideally show a toast; using Sonner or Toaster if available
+
+    // Reset form
+    setForm({
+      course: course?.title || "",
+      name: "",
+      email: "",
+      phone: "",
+      qualification: "",
+      city: "",
+      message: "",
+      timestamp: new Date().toISOString(),
+    });
   }
 
   return (
