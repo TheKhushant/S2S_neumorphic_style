@@ -2,9 +2,9 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import Hero1 from "../../../public/1.png";
-import Hero2 from "../../../public/5.png";
-import Hero3 from "../../../public/3.png";
+import Hero1 from "../../../public/image.png";
+import Hero2 from "../../../public/DA.png";
+import Hero3 from "../../../public/py1.png";
 
 const slides = [
   { image: Hero3, cta: { label: "Explore Courses", to: "/courses" } },
