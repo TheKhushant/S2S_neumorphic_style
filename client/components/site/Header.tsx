@@ -18,16 +18,18 @@ const navItems = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      style={{ fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" }}
+    >
       <div className="container flex h-24 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img
             src="/logo.png"
             alt="Skill2Success Logo"
-            className="h-24 w-24 md:h-20 md:w-20 sm:h-16 sm:w-16 object-contain"
+            className="h-48 w-48 md:h-36 md:w-36 sm:h-28 sm:w-28 object-contain"
             aria-hidden="true"
           />
-          <span className="text-lg font-extrabold tracking-tight text-foreground">Skill2Success</span>
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
