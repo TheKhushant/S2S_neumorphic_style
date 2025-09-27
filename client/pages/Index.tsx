@@ -42,17 +42,29 @@ export default function Index() {
         <div className="grid items-center gap-10 md:grid-cols-2">
           <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <h2 className="text-3xl font-extrabold tracking-tight">About Us</h2>
-            <p className="mt-4 text-foreground/80">We deliver high-quality training with a focus on real-world skills, taught by expert trainers with industry experience.</p>
-            <ul className="mt-4 grid gap-2 text-sm text-foreground/80">
-              <li>• Mentor-led live classes</li>
-              <li>• Hands-on assignments</li>
-              <li>• Placement assistance</li>
-            </ul>
+            <div className="mt-4 text-foreground/80">
+              <p>Skill2Success, where innovation meets excellence in the realm of IT solutions.</p>
+              <p className="mt-2">Skill2Success is a software organization with a presence in Pune and Nagpur city. Specializing in various aspects of IT and digital marketing, Skill2Success excels in customized web development, application development and various training programs.</p>
+              <h3 className="mt-4 font-bold">Education</h3>
+              <p className="mt-2">Education is key to personal and professional growth. So we empower individuals to excel academically and professionally, opening doors to new opportunities and horizons.</p>
+              <h3 className="mt-4 font-bold">Belief</h3>
+              <p className="mt-2">We believe in nurturing talent and fostering careers. We connect top-tier talent with leading organizations, facilitating mutually beneficial partnerships and helping individuals navigate the complexities of the job market.</p>
+              <h3 className="mt-4 font-bold">Solutions</h3>
+              <p className="mt-2">Our tailored solutions ensure that your projects are not only executed flawlessly but also meet your unique requirements and objectives. Driven by a commitment to excellence, integrity, and client satisfaction, Skill2Success is your go-to partner for innovative and impactful IT solutions.</p>
+            </div>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <div className="aspect-[4/3] w-full rounded-2xl bg-gradient-to-br from-secondary/50 to-primary/30 p-1">
               <div className="h-full w-full rounded-2xl bg-background/60 backdrop-blur">
-                <img src="/placeholder.svg" alt="Classroom" className="h-full w-full rounded-2xl object-cover" />
+                <video
+                  src="/v1.mp4"
+                  alt="Classroom"
+                  className="h-full w-full rounded-2xl object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                />
               </div>
             </div>
           </motion.div>
@@ -71,7 +83,21 @@ export default function Index() {
           </div>
         </div>
       </section>
-      <ContactForm />
+      <section id="contact" className="container py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl font-extrabold tracking-tight">Contact Us</h2>
+          <p className="mt-3 text-foreground/80">Reach out to us for more information about our services and training programs.</p>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-10"
+        >
+          <ContactForm />
+        </motion.div>
+      </section>
     </Layout>
   );
 }
