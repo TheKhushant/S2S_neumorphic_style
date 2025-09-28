@@ -1,16 +1,18 @@
 import React, { useState } from "react";
-import Layout from "@/components/site/Layout";
 import { useParams, useNavigate } from "react-router-dom";
+import Layout from "@/components/site/Layout";
 import { getCourseById } from "@/data/courses";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzABRv_G0hw1dw49dM012FsVrICdtpZjP9dR9ZbJoEbacILmbFQJ6jpO6FuEtqRHvdscA/exec"; // <- replace
+// TODO: replace with your own deployed Apps Script Web App URL
+const SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbzikXYaDkViNbbW0mJE421h401IrdjyRVUCctcqiDgVidrppGCnVkJzYm7D1Sd_CiM/exec";
 
 export default function Enroll() {
   const { id } = useParams();
   const course = id ? getCourseById(id) : null;
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({
+  const initialFormState = {
     course: course?.title || "",
     name: "",
     email: "",
@@ -18,74 +20,67 @@ export default function Enroll() {
     qualification: "",
     city: "",
     message: "",
-  });
+  };
 
+  const [form, setForm] = useState(initialFormState);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  function handleChange(
+  const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) {
+  ) => {
     const { name, value } = e.target;
-    setForm((s) => ({ ...s, [name]: value }));
-  }
+    setForm((prev) => ({ ...prev, [name]: value }));
+  };
 
-  async function submit(e: React.FormEvent) {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setStatusMessage(null);
 
     try {
-      // Use URLSearchParams to avoid JSON preflight
+      // Encode as x-www-form-urlencoded (avoids preflight CORS issues)
       const payload = new URLSearchParams();
-      Object.entries(form).forEach(([k, v]) =>
-        payload.append(k, (v ?? "").toString())
+      Object.entries(form).forEach(([key, value]) =>
+        payload.append(key, (value ?? "").toString())
       );
 
       const response = await fetch(SCRIPT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: payload.toString(),
       });
 
-      // Try parse JSON (Apps Script returns JSON)
-      const text = await response.text();
-      let json: any = {};
+      const rawText = await response.text();
+      let json: any;
+
       try {
-        json = JSON.parse(text || "{}");
-      } catch (_) {
-        json = { status: response.ok ? "success" : "error", message: text };
+        json = JSON.parse(rawText || "{}");
+      } catch {
+        json = { status: response.ok ? "success" : "error", message: rawText };
       }
 
       if (response.ok && json.status === "success") {
-        setStatusMessage("✅ Thank you! Your inquiry has been recorded.");
-        // reset form (keep course)
-        setForm({
-          course: course?.title || "",
-          name: "",
-          email: "",
-          phone: "",
-          qualification: "",
-          city: "",
-          message: "",
-        });
-        // navigate back after short delay
-        setTimeout(() => navigate("/", { replace: true }), 1400);
+        setStatusMessage("✅ Thank you! Your enrollment has been recorded.");
+        setForm(initialFormState);
+
+        // Redirect after delay
+        setTimeout(() => navigate("/", { replace: true }), 1500);
       } else {
-        throw new Error(json.message || "Server error");
+        throw new Error(json.message || "Unknown server error");
       }
-    } catch (err: any) {
-      console.error("Submission error:", err);
+    } catch (err) {
+      console.error("Form submission error:", err);
       setStatusMessage(
-        "❌ Something went wrong. Check DevTools network tab and Apps Script deployment."
+        "❌ Something went wrong. Please check your network tab or Apps Script deployment."
       );
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <Layout>
@@ -95,70 +90,95 @@ export default function Enroll() {
             Enroll{course ? `: ${course.title}` : ""}
           </h1>
           <p className="mt-2 text-foreground/80">
-            Complete the form and our admissions team will contact you.
+            Complete the form and our admissions team will contact you shortly.
           </p>
 
-          <form onSubmit={submit} className="mt-6 grid gap-3">
-            <label className="text-sm">Course</label>
-            <input
-              name="course"
-              value={form.course}
-              readOnly
-              className="rounded-md border bg-gray-100 px-3 py-2"
-            />
+          <form onSubmit={handleSubmit} className="mt-6 grid gap-4">
+            {/* Course (readonly) */}
+            <div>
+              <label className="block text-sm font-medium">Course</label>
+              <input
+                name="course"
+                value={form.course}
+                readOnly
+                className="mt-1 w-full rounded-md border bg-gray-100 px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">Full name</label>
-            <input
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              required
-              className="rounded-md border px-3 py-2"
-            />
+            {/* Full name */}
+            <div>
+              <label className="block text-sm font-medium">Full name</label>
+              <input
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                required
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">Email</label>
-            <input
-              name="email"
-              type="email"
-              value={form.email}
-              onChange={handleChange}
-              required
-              className="rounded-md border px-3 py-2"
-            />
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium">Email</label>
+              <input
+                name="email"
+                type="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">Phone</label>
-            <input
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              required
-              className="rounded-md border px-3 py-2"
-            />
+            {/* Phone */}
+            <div>
+              <label className="block text-sm font-medium">Phone</label>
+              <input
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+                required
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">Highest Qualification</label>
-            <input
-              name="qualification"
-              value={form.qualification}
-              onChange={handleChange}
-              className="rounded-md border px-3 py-2"
-            />
+            {/* Qualification */}
+            <div>
+              <label className="block text-sm font-medium">
+                Highest Qualification
+              </label>
+              <input
+                name="qualification"
+                value={form.qualification}
+                onChange={handleChange}
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">City</label>
-            <input
-              name="city"
-              value={form.city}
-              onChange={handleChange}
-              className="rounded-md border px-3 py-2"
-            />
+            {/* City */}
+            <div>
+              <label className="block text-sm font-medium">City</label>
+              <input
+                name="city"
+                value={form.city}
+                onChange={handleChange}
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
-            <label className="text-sm">Message</label>
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              className="min-h-[120px] rounded-md border px-3 py-2"
-            />
+            {/* Message */}
+            <div>
+              <label className="block text-sm font-medium">Message</label>
+              <textarea
+                name="message"
+                value={form.message}
+                onChange={handleChange}
+                rows={4}
+                className="mt-1 w-full rounded-md border px-3 py-2"
+              />
+            </div>
 
+            {/* Actions */}
             <div className="flex items-center gap-3">
               <button
                 type="submit"
@@ -176,9 +196,12 @@ export default function Enroll() {
               </button>
             </div>
 
+            {/* Status Message */}
             {statusMessage && (
               <p
-                className={`mt-4 text-center ${statusMessage.includes("✅") ? "text-green-600" : "text-red-600"
+                className={`mt-4 text-center ${statusMessage.includes("✅")
+                  ? "text-green-600"
+                  : "text-red-600"
                   }`}
               >
                 {statusMessage}
