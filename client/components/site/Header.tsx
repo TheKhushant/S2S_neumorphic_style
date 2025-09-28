@@ -27,7 +27,7 @@ export default function Header() {
           <img
             src="/logo.png"
             alt="Skill2Success Logo"
-            className="h-48 w-48 md:h-36 md:w-36 sm:h-28 sm:w-28 object-contain"
+            className="h-32 w-32 md:h-36 md:w-36 lg:h-48 lg:w-38 object-contain"
             aria-hidden="true"
           />
         </Link>
