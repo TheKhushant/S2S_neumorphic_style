@@ -1,35 +1,85 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 export default function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  function handleChange(e) {
+    setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.phone || !form.message) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Construct WhatsApp message
+    const whatsappNumber = "919399345989";
+    const message = `New Contact Form Submission:\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nMessage: ${form.message}`;
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+    // Open WhatsApp in new tab
+    window.open(whatsappUrl, "_blank");
+
+    // Reset form
+    setForm({ name: "", email: "", phone: "", message: "" });
+
+    setIsSubmitting(false);
+    alert("Your message has been prepared in WhatsApp. Please send it to confirm.");
+  }
+
   return (
     <section id="contact" className="bg-background py-16">
       <div className="container grid gap-10 md:grid-cols-2">
         <div className="space-y-4">
           <h2 className="text-3xl font-extrabold tracking-tight">Get in Touch</h2>
-          <p className="text-foreground/80">Have questions about courses, schedules, or fees? Send us a message.</p>
-          <form className="grid gap-3">
+          <p className="text-foreground/80">Have questions about courses, schedules, or fees? Send us a message via WhatsApp.</p>
+          <form onSubmit={handleSubmit} className="grid gap-3">
             <input
+              name="name"
+              value={form.name}
+              onChange={handleChange}
               className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
               placeholder="Full name"
               required
             />
             <input
-              className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
               type="email"
+              className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
               placeholder="Email"
               required
             />
             <input
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
               className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
               placeholder="Phone"
               required
             />
             <textarea
+              name="message"
+              value={form.message}
+              onChange={handleChange}
               className="min-h-[120px] rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
               placeholder="Your message"
+              required
             />
-            <button className="h-11 rounded-md bg-primary px-5 font-semibold text-primary-foreground hover:bg-primary/90">
-              Send
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="h-11 rounded-md bg-primary px-5 font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+            >
+              {isSubmitting ? "Sending..." : "Send via WhatsApp"}
             </button>
           </form>
         </div>
