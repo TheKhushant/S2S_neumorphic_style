@@ -2,14 +2,16 @@ import { useCallback, useEffect, useState } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
-import Hero1 from "../../../public/image.png";
-import Hero2 from "../../../public/DA.png";
+// import Hero1 from "../../../public/image.png";
+// import Hero2 from "../../../public/DA.png";
 import Hero3 from "../../../public/py1.png";
+import hero4 from "../../../public/AIdata2.jpg"
 
 const slides = [
   { image: Hero3, cta: { label: "Explore Courses", to: "/courses" } },
-  { image: Hero2, cta: { label: "View Programs", to: "/courses" } },
-  { image: Hero1, cta: { label: "Contact Us", to: "/contact" } },
+  // { image: Hero2, cta: { label: "View Programs", to: "/courses" } },
+  // { image: Hero1, cta: { label: "Contact Us", to: "/contact" } },
+  { image: hero4, cta: { label: "Contact Us", to: "/contact" } },
 ];
 
 export default function HeroSlider() {
@@ -80,7 +82,7 @@ export default function HeroSlider() {
       </button>
 
       {/* Dots & Play/Pause */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-2 xs:bottom-2.5 sm:bottom-3 md:bottom-4 lg:bottom-6 xl:bottom-8 flex items-center gap-1 xs:gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 xl:gap-4">
+      {/* <div className="absolute left-1/2 -translate-x-1/2 bottom-2 xs:bottom-2.5 sm:bottom-3 md:bottom-4 lg:bottom-6 xl:bottom-8 flex items-center gap-1 xs:gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 xl:gap-4">
         <button
           onClick={() => setPlaying((p) => !p)}
           className="text-white text-[10px] xs:text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl px-1 xs:px-1.5 sm:px-2 md:px-2.5 lg:px-3 xl:px-4 py-0.5 xs:py-0.75 sm:py-1 md:py-1.25 lg:py-1.5 xl:py-2 rounded bg-black/50 hover:bg-black/60 transition-all duration-200"
@@ -97,7 +99,7 @@ export default function HeroSlider() {
             />
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* CTA Buttons */}
       <div className="absolute bottom-2 xs:bottom-2.5 sm:bottom-3 md:bottom-4 lg:bottom-6 xl:bottom-8 left-1 xs:left-2 sm:left-3 md:left-4 lg:left-6 xl:left-8 right-1 xs:right-2 sm:right-3 md:right-4 lg:right-6 xl:right-8 flex justify-center gap-1 xs:gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 xl:gap-4">
