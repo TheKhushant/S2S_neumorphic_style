@@ -6,7 +6,7 @@ export default function ClassroomTraining() {
       <section className="container py-16">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="text-3xl font-extrabold">Classroom Training</h1>
-          <p className="mt-3 text-foreground/80">In-person instructor-led classes at our Hyderabad center. Small batches and live projects.</p>
+          <p className="mt-3 text-foreground/80">In-person instructor-led classes at our Nagpur center. Small batches and live projects.</p>
         </div>
         <div className="mt-10 grid gap-6 sm:grid-cols-2">
           <div className="rounded-lg border bg-background p-6">
