@@ -4,6 +4,7 @@ import Layout from "@/components/site/Layout";
 import { Link } from "react-router-dom";
 import { courses } from "../data/courses";
 import CourseCard from "../components/site/CourseCard";
+import GallerySection from "../components/site/GallerySection"; // Import the new component
 import {
   SparklesIcon,
   PlayCircleIcon,
@@ -13,8 +14,6 @@ import {
   MagnifyingGlassIcon,
   FunnelIcon,
   XMarkIcon,
-  EyeIcon,
-  VideoCameraIcon,
   AcademicCapIcon,
   TrophyIcon,
   StarIcon
@@ -26,8 +25,6 @@ export default function OnlineTraining() {
   const [selectedLevel, setSelectedLevel] = useState("all");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [hoveredCard, setHoveredCard] = useState(null);
-  const [activeGalleryTab, setActiveGalleryTab] = useState("all");
-  const [selectedImage, setSelectedImage] = useState(null);
 
   // Extract unique categories and levels
   const categories = ["all", ...new Set(courses.map(course => course.category))];
@@ -49,77 +46,6 @@ export default function OnlineTraining() {
     { value: "98%", label: "Success Rate", icon: ChartBarIcon },
     { value: "24/7", label: "Mentor Support", icon: ClockIcon },
     { value: "50+", label: "Projects", icon: SparklesIcon }
-  ];
-
-  // Gallery data
-  const galleryItems = [
-    {
-      id: 1,
-      type: "image",
-      category: "classroom",
-      title: "Live Interactive Sessions",
-      description: "Real-time learning with expert instructors",
-      image: "/gallery/live-session.jpg",
-      badge: "Live"
-    },
-    {
-      id: 2,
-      type: "video",
-      category: "projects",
-      title: "Student Project Showcase",
-      description: "See what our students have built",
-      image: "/gallery/project-showcase.jpg",
-      badge: "Projects"
-    },
-    {
-      id: 3,
-      type: "image",
-      category: "success",
-      title: "Placement Success Stories",
-      description: "Our graduates at top companies",
-      image: "/gallery/success-stories.jpg",
-      badge: "Success"
-    },
-    {
-      id: 4,
-      type: "video",
-      category: "classroom",
-      title: "AI-Powered Learning",
-      description: "Smart learning with AI assistants",
-      image: "/gallery/ai-learning.jpg",
-      badge: "AI"
-    },
-    {
-      id: 5,
-      type: "image",
-      category: "projects",
-      title: "Hands-on Workshops",
-      description: "Practical coding sessions",
-      image: "/gallery/workshop.jpg",
-      badge: "Workshop"
-    },
-    {
-      id: 6,
-      type: "image",
-      category: "success",
-      title: "Certificate Distribution",
-      description: "Celebrating student achievements",
-      image: "/gallery/certificates.jpg",
-      badge: "Certified"
-    }
-  ];
-
-  // Filter gallery items
-  const filteredGallery = activeGalleryTab === "all"
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeGalleryTab);
-
-  // Gallery tabs
-  const galleryTabs = [
-    { id: "all", label: "All", count: galleryItems.length },
-    { id: "classroom", label: "Classroom", count: galleryItems.filter(item => item.category === "classroom").length },
-    { id: "projects", label: "Projects", count: galleryItems.filter(item => item.category === "projects").length },
-    { id: "success", label: "Success", count: galleryItems.filter(item => item.category === "success").length }
   ];
 
   return (
@@ -392,137 +318,8 @@ export default function OnlineTraining() {
           )}
         </motion.div>
 
-        {/* Interactive Gallery Section */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4"
-            >
-              <EyeIcon className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Learning Experience</span>
-            </motion.div>
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent mb-4">
-              Explore Our Learning Journey
-            </h2>
-            <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-              Get a glimpse of our interactive classrooms, student projects, and success stories
-            </p>
-          </div>
-
-          {/* Gallery Tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.5 }}
-            className="flex flex-wrap justify-center gap-2 mb-8"
-          >
-            {galleryTabs.map((tab) => (
-              <motion.button
-                key={tab.id}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveGalleryTab(tab.id)}
-                className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-2 ${activeGalleryTab === tab.id
-                  ? "bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg shadow-primary/25"
-                  : "bg-background/50 border border-border/30 text-foreground/70 hover:border-primary/30"
-                  }`}
-              >
-                {tab.label}
-                <span className={`text-xs px-2 py-1 rounded-full ${activeGalleryTab === tab.id
-                  ? "bg-white/20 text-white"
-                  : "bg-primary/10 text-primary"
-                  }`}>
-                  {tab.count}
-                </span>
-              </motion.button>
-            ))}
-          </motion.div>
-
-          {/* Gallery Grid */}
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredGallery.map((item, index) => (
-                <motion.div
-                  key={item.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.8, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.8, y: -20 }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 300,
-                    damping: 30,
-                    delay: index * 0.1
-                  }}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  className="group relative rounded-2xl overflow-hidden bg-background/50 border border-border/30 backdrop-blur-sm cursor-pointer"
-                  onClick={() => setSelectedImage(item)}
-                >
-                  {/* Image Container */}
-                  <div className="relative aspect-video overflow-hidden">
-                    {/* Placeholder for image - replace with actual images */}
-                    <div className="w-full h-full bg-gradient-to-br from-primary/20 to-purple-600/20 flex items-center justify-center">
-                      <div className="text-center">
-                        {item.type === "video" ? (
-                          <VideoCameraIcon className="w-12 h-12 text-primary/50 mx-auto mb-2" />
-                        ) : (
-                          <EyeIcon className="w-12 h-12 text-primary/50 mx-auto mb-2" />
-                        )}
-                        <p className="text-sm text-foreground/50">Gallery Image</p>
-                      </div>
-                    </div>
-
-                    {/* Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-semibold ${item.badge === "Live" ? "bg-red-500/20 text-red-500" :
-                        item.badge === "Projects" ? "bg-green-500/20 text-green-500" :
-                          item.badge === "Success" ? "bg-yellow-500/20 text-yellow-500" :
-                            "bg-primary/20 text-primary"
-                        }`}>
-                        {item.badge}
-                      </span>
-                    </div>
-
-                    {/* Video Play Button */}
-                    {item.type === "video" && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <motion.div
-                          whileHover={{ scale: 1.1 }}
-                          className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
-                        >
-                          <PlayCircleIcon className="w-8 h-8 text-white" />
-                        </motion.div>
-                      </div>
-                    )}
-
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-6">
-                    <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-foreground/70">
-                      {item.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
-        </motion.section>
+        {/* Gallery Section */}
+        <GallerySection />
 
         {/* CTA Section */}
         <motion.div
@@ -549,41 +346,6 @@ export default function OnlineTraining() {
           </div>
         </motion.div>
       </section>
-
-      {/* Image Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              className="relative max-w-4xl max-h-full bg-background rounded-2xl overflow-hidden"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {/* Modal content would go here */}
-              <div className="p-8 text-center">
-                <h3 className="text-2xl font-bold mb-4">{selectedImage.title}</h3>
-                <p className="text-foreground/70 mb-6">{selectedImage.description}</p>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => setSelectedImage(null)}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-primary to-purple-600 text-white font-semibold"
-                >
-                  Close Preview
-                </motion.button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </Layout>
   );
 }

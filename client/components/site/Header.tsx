@@ -54,7 +54,8 @@ export default function Header() {
     >
       <div className="container flex h-16 sm:h-20 lg:h-24 items-center justify-between px-4 sm:px-6 mx-auto">
         {/* Logo */}
-        <Link to="/" className="flex items-center flex-shrink-0">
+        <Link to="/" className="flex items-center mt-[10px] flex-shrink-0
+         2xl:mr-8 2xl:ml-[-200px]">
           <img
             src="/logo.png"
             alt="Skill2Success Logo"
@@ -70,8 +71,8 @@ export default function Header() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
+        {/* Desktop Navigation - Full (≥1280px) */}
+        <nav className="hidden xl:flex items-center gap-4 2xl:gap-6 2xl:mr-[-200px]">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
