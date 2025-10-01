@@ -1,7 +1,8 @@
 import Layout from "@/components/site/Layout";
-
+import GallerySection from "../components/site/GallerySection"
 export default function ClassroomTraining() {
   return (
+    <>
     <Layout>
       <section className="container py-16">
         <div className="mx-auto max-w-3xl text-center">
@@ -18,7 +19,10 @@ export default function ClassroomTraining() {
             <p className="mt-2 text-sm text-foreground/80">Saturday & Sunday, 10:00 AM - 2:00 PM</p>
           </div>
         </div>
+      <GallerySection/>
       </section>
     </Layout>
+
+    </>
   );
 }
