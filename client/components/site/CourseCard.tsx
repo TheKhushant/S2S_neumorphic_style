@@ -10,7 +10,7 @@ import {
   ChartBarIcon,
   PlayCircleIcon,
   ChevronDownIcon,
-  CheckBadgeIcon
+  CheckBadgeIcon,
 } from "@heroicons/react/24/outline";
 
 export default function CourseCard({ course }: { course: Course }) {
@@ -18,40 +18,24 @@ export default function CourseCard({ course }: { course: Course }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      scale: 0.95
-    },
+    hidden: { opacity: 0, y: 20, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 300,
-        damping: 24
-      }
+      transition: { type: "spring", stiffness: 300, damping: 24 },
     },
     hover: {
       y: -8,
       scale: 1.02,
       boxShadow: "0 20px 40px -12px rgba(99, 102, 241, 0.3)",
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 25
-      }
-    }
+      transition: { type: "spring", stiffness: 400, damping: 25 },
+    },
   };
 
   const glowVariants = {
     hidden: { opacity: 0, scale: 0.8 },
-    hover: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.3 }
-    }
+    hover: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
   };
 
   return (
@@ -62,11 +46,11 @@ export default function CourseCard({ course }: { course: Course }) {
       whileHover="hover"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative rounded-2xl bg-gradient-to-br from-background to-muted/20 p-6 border border-border/50 overflow-hidden group cursor-pointer"
+      className="relative rounded-2xl bg-gradient-to-br from-background to-muted/20 p-4 sm:p-6 border border-border/50 overflow-hidden group cursor-pointer max-w-full"
       style={{
         background: isHovered
-          ? 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.3) 100%)'
-          : 'linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.1) 100%)'
+          ? "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.3) 100%)"
+          : "linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)/0.1) 100%)",
       }}
     >
       {/* Animated Background Glow */}
@@ -75,44 +59,42 @@ export default function CourseCard({ course }: { course: Course }) {
         className="absolute inset-0 bg-gradient-to-br from-primary/10 via-purple-500/5 to-transparent pointer-events-none"
       />
 
-
-
-      <div className="relative flex items-start gap-4">
+      <div className="relative flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
         {/* Course Image with Shine Effect */}
         <motion.div
           whileHover={{ scale: 1.05, rotateY: 10 }}
-          className="relative flex-shrink-0"
+          className="relative flex-shrink-0 w-full sm:w-auto"
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-purple-600/20 rounded-xl blur-sm group-hover:blur-md transition-all duration-300" />
           <img
             src={course.image}
             alt={course.title}
-            className="h-20 w-28 rounded-xl object-cover relative z-10 border border-white/10 shadow-lg"
+            className="h-16 sm:h-20 w-full sm:w-28 rounded-xl object-cover relative z-10 border border-white/10 shadow-lg max-w-[200px] mx-auto sm:mx-0"
           />
           <motion.div
             animate={{
               x: isHovered ? ["0%", "200%"] : "0%",
-              opacity: isHovered ? [0, 1, 0] : 0
+              opacity: isHovered ? [0, 1, 0] : 0,
             }}
             transition={{ duration: 0.6 }}
             className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 z-20 rounded-xl"
           />
         </motion.div>
 
-        <div className="flex-1 min-w-0">
+        <div className="flex-1 min-w-0 w-full">
           {/* Progress Bar */}
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: "100%" }}
             transition={{ delay: 0.3, duration: 0.5 }}
-            className="h-1 w-full rounded-full bg-gradient-to-r from-secondary to-primary mb-3"
+            className="h-1 rounded-full bg-gradient-to-r from-secondary to-primary mb-2 sm:mb-3"
           />
 
-          <h3 className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent line-clamp-1">
+          <h3 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent line-clamp-1">
             {course.title}
           </h3>
 
-          <p className="mt-2 text-sm text-foreground/70 line-clamp-2 leading-relaxed">
+          <p className="mt-1 sm:mt-2 text-xs sm:text-sm text-foreground/70 line-clamp-2 leading-relaxed">
             {course.short}
           </p>
 
@@ -121,18 +103,18 @@ export default function CourseCard({ course }: { course: Course }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-3 flex flex-wrap items-center gap-4 text-xs text-muted-foreground"
+            className="mt-2 sm:mt-3 flex flex-wrap items-center gap-3 sm:gap-4 text-xs text-muted-foreground"
           >
             <div className="flex items-center gap-1">
-              <AcademicCapIcon className="w-3 h-3" />
+              <AcademicCapIcon className="w-3 h-3 sm:w-3 sm:h-3" />
               <span>{course.level}</span>
             </div>
             <div className="flex items-center gap-1">
-              <ClockIcon className="w-3 h-3" />
+              <ClockIcon className="w-3 h-3 sm:w-3 sm:h-3" />
               <span>{course.duration}</span>
             </div>
             <div className="flex items-center gap-1">
-              <ChartBarIcon className="w-3 h-3" />
+              <ChartBarIcon className="w-3 h-3 sm:w-3 sm:h-3" />
               <span>{course.category}</span>
             </div>
           </motion.div>
@@ -147,10 +129,10 @@ export default function CourseCard({ course }: { course: Course }) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="mt-4 space-y-3 overflow-hidden"
+            className="mt-3 sm:mt-4 space-y-3 overflow-hidden"
           >
             <div className="border-t border-border/30 pt-3">
-              <h4 className="text-sm font-semibold mb-2 flex items-center gap-2">
+              <h4 className="text-xs sm:text-sm font-semibold mb-2 flex items-center gap-2">
                 <CheckBadgeIcon className="w-4 h-4 text-primary" />
                 Key Topics
               </h4>
@@ -175,11 +157,11 @@ export default function CourseCard({ course }: { course: Course }) {
       {/* Action Buttons */}
       <motion.div
         layout
-        className="mt-6 flex items-center justify-between gap-3"
+        className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
       >
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 w-full sm:w-auto">
           <motion.span
-            className="text-lg font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
+            className="text-base sm:text-lg font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }}
           >
             {course.fees}
@@ -197,29 +179,27 @@ export default function CourseCard({ course }: { course: Course }) {
           </motion.button>
         </div>
 
-        <div className="flex items-center gap-2">
-          
-
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Link to={`/enroll/${course.id}`}>
-              <Button className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-primary/90 hover:to-purple-600/90 transition-all duration-300 font-semibold gap-2">
-                <SparklesIcon className="w-4 h-4" />
-                Inquiry
-              </Button>
-            </Link>
-          </motion.div>
+        <div className="flex items-center gap-2 w-full sm:w-auto justify-center sm:justify-end">
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link to={`/courses/${course.id}`}>
               <Button
                 variant="ghost"
                 size="sm"
-                className="gap-1 text-muted-foreground hover:text-foreground"
+                className="gap-1 text-muted-foreground hover:text-foreground text-xs sm:text-sm px-3 sm:px-4"
               >
                 <PlayCircleIcon className="w-4 h-4" />
-                View Details
+                Preview
+              </Button>
+            </Link>
+          </motion.div>
+
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link to={`/enroll/${course.id}`}>
+              <Button
+                className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-primary/90 hover:to-purple-600/90 transition-all duration-300 font-semibold gap-2 text-xs sm:text-sm px-3 sm:px-4"
+              >
+                <SparklesIcon className="w-4 h-4" />
+                Enroll Now
               </Button>
             </Link>
           </motion.div>
@@ -228,10 +208,7 @@ export default function CourseCard({ course }: { course: Course }) {
 
       {/* Interactive Hover Effect */}
       <motion.div
-        animate={{
-          opacity: isHovered ? 1 : 0,
-          scale: isHovered ? 1 : 0.8
-        }}
+        animate={{ opacity: isHovered ? 1 : 0, scale: isHovered ? 1 : 0.8 }}
         className="absolute inset-0 rounded-2xl border-2 border-primary/20 pointer-events-none"
       />
     </motion.article>
