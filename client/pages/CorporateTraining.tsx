@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/site/Layout";
+import GallerySection from "../components/site/GallerySection"
 import {
   SparklesIcon,
   BuildingOfficeIcon,
@@ -546,6 +547,7 @@ export default function CorporateTraining() {
             </motion.div>
           </motion.div>
         </motion.div>
+        <GallerySection/>
       </section>
     </Layout>
   );
