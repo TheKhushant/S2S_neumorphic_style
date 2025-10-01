@@ -52,10 +52,9 @@ export default function Header() {
           "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
       }}
     >
-      <div className="container flex h-16 sm:h-20 lg:h-24 items-center justify-between px-4 sm:px-6 lg:px-8 mx-auto">
+      <div className="container flex h-16 sm:h-20 lg:h-24 items-center justify-between px-4 sm:px-6 mx-auto">
         {/* Logo */}
-        <Link to="/" className="flex items-center mt-[10px] flex-shrink-0
-         2xl:mr-8 2xl:ml-[-200px]">
+        <Link to="/" className="flex items-center flex-shrink-0">
           <img
             src="/logo.png"
             alt="Skill2Success Logo"
@@ -64,15 +63,15 @@ export default function Header() {
               w-[120px]   /* base mobile */
               sm:w-[110px] /* ≥640px */
               md:w-[130px] /* ≥768px */
-              lg:w-[140px] /* ≥1024px */
-              xl:w-[160px] /* ≥1280px */
-              2xl:w-[180px] /* ≥1536px */
+              lg:w-[150px] /* ≥1024px */
+              xl:w-[170px] /* ≥1280px */
+              2xl:w-[190px] /* ≥1536px */
             "
           />
         </Link>
 
-        {/* Desktop Navigation - Full (≥1280px) */}
-        <nav className="hidden xl:flex items-center gap-4 2xl:gap-6 2xl:mr-[-200px]">
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-6">
           {navItems.map((item) => (
             <NavLink
               key={item.to}
@@ -86,51 +85,22 @@ export default function Header() {
                 )
               }
             >
-              <item.icon className="w-4 h-4 2xl:w-5 2xl:h-5" />
+              <item.icon className="w-4 h-4 xl:w-5 xl:h-5" />
               <span className="whitespace-nowrap">{item.label}</span>
             </NavLink>
           ))}
           <Link to="/portal">
             <Button className="text-sm px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 whitespace-nowrap">
               <span className="flex items-center gap-2">
-                <UserCircleIcon className="w-4 h-4 2xl:w-5 2xl:h-5" />
+                <UserCircleIcon className="w-4 h-4 xl:w-5 xl:h-5" />
                 Student Portal
               </span>
             </Button>
           </Link>
         </nav>
 
-        {/* Large Desktop Navigation (1024px - 1279px) */}
-        <nav className="hidden lg:flex xl:hidden items-center gap-2">
-          {navItems.slice(0, 6).map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              className={({ isActive }) =>
-                cn(
-                  "flex items-center gap-1 text-xs font-semibold transition-colors hover:text-black px-2 py-1 rounded",
-                  isActive
-                    ? "text-black bg-gray-50 shadow-sm"
-                    : "text-gray-700 hover:bg-gray-50"
-                )
-              }
-            >
-              <item.icon className="w-3 h-3" />
-              <span className="whitespace-nowrap">{item.label}</span>
-            </NavLink>
-          ))}
-          <Link to="/portal">
-            <Button className="text-xs px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 whitespace-nowrap">
-              <span className="flex items-center gap-1">
-                <UserCircleIcon className="w-3 h-3" />
-                Portal
-              </span>
-            </Button>
-          </Link>
-        </nav>
-
         {/* Tablet Navigation (768px - 1023px) */}
-        <nav className="hidden md:flex lg:hidden items-center gap-2">
+        <nav className="hidden md:flex lg:hidden items-center gap-3">
           {navItems.slice(0, 4).map((item) => (
             <NavLink
               key={item.to}
@@ -149,7 +119,7 @@ export default function Header() {
             </NavLink>
           ))}
           <Link to="/portal">
-            <Button className="text-xs px-2 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 whitespace-nowrap">
+            <Button className="text-xs px-3 py-1 bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 whitespace-nowrap">
               <span className="flex items-center gap-1">
                 <UserCircleIcon className="w-3 h-3" />
                 Portal
