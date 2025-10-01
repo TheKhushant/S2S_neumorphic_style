@@ -19,15 +19,22 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import ScrollToTop from "./components/ScrollToTop"
+
 
 const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
+
     <TooltipProvider>
+
       <Toaster />
       <Sonner />
+
+
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/courses" element={<Courses />} />
