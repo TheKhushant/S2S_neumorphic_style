@@ -198,18 +198,7 @@ export default function CourseCard({ course }: { course: Course }) {
         </div>
 
         <div className="flex items-center gap-2">
-          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Link to={`/courses/${course.id}`}>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="gap-1 text-muted-foreground hover:text-foreground"
-              >
-                <PlayCircleIcon className="w-4 h-4" />
-                Preview
-              </Button>
-            </Link>
-          </motion.div>
+          
 
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -218,7 +207,19 @@ export default function CourseCard({ course }: { course: Course }) {
             <Link to={`/enroll/${course.id}`}>
               <Button className="bg-gradient-to-r from-primary to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-primary/90 hover:to-purple-600/90 transition-all duration-300 font-semibold gap-2">
                 <SparklesIcon className="w-4 h-4" />
-                Enroll Now
+                Inquiry
+              </Button>
+            </Link>
+          </motion.div>
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link to={`/courses/${course.id}`}>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="gap-1 text-muted-foreground hover:text-foreground"
+              >
+                <PlayCircleIcon className="w-4 h-4" />
+                View Details
               </Button>
             </Link>
           </motion.div>

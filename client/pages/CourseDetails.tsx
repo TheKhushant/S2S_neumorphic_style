@@ -416,7 +416,7 @@ export default function CourseDetails() {
                 <Link to={`/enroll/${course.id}`} className="block w-full">
                   <button className="w-full rounded-xl bg-gradient-to-r from-primary to-purple-600 px-6 py-4 font-bold text-primary-foreground shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center gap-2">
                     <SparklesIcon className="w-5 h-5" />
-                    Enroll Now
+                    Inquiry
                   </button>
                 </Link>
               </motion.div>
