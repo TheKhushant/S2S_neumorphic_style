@@ -62,7 +62,7 @@ export default function PosterTemplates() {
         className="mx-auto max-w-lg text-center mb-8"
       >
 
-        <h2 className="text-2xl md:text-3xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
+        <h2 className="text-2xl md:text-5xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
           Updates
         </h2>
         <p className="mt-4 text-base text-foreground/70 max-w-md mx-auto">
