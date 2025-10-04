@@ -20,6 +20,7 @@ import {
   ChevronRightIcon,
   StarIcon
 } from "@heroicons/react/24/outline";
+import PosterTemplates from "../components/site/PosterTemplates"
 
 export default function Index() {
   const [hoveredCourse, setHoveredCourse] = useState(null);
@@ -157,26 +158,12 @@ export default function Index() {
 
   return (
     <Layout>
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-blue-600/20 to-primary/20 rounded-full blur-3xl"
-        />
-      </div>
-
+      {/* Removed Animated Background Elements */}
       <Hero />
+      <PosterTemplates />
 
       {/* Featured Courses Section */}
-      <section id="courses" className="container py-20 relative">
+      <section id="courses" className="container py-20 relative bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -336,7 +323,7 @@ export default function Index() {
       <Stats />
 
       {/* About Us Section */}
-      <section id="about" className="container py-20 relative">
+      <section id="about" className="container py-20 relative bg-white">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -488,7 +475,7 @@ export default function Index() {
       </section>
 
       {/* Professional Testimonials Section */}
-      <section id="testimonials" className="py-20 relative overflow-hidden bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-900/20">
+      <section id="testimonials" className="py-20 relative overflow-hidden bg-white">
         <div className="container relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -523,7 +510,7 @@ export default function Index() {
             onMouseLeave={() => setIsPaused(false)}
           >
             {/* Main Testimonial Display */}
-            <div className="relative bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
+            <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
               <div className="grid lg:grid-cols-2">
                 {/* Testimonial Content */}
                 <div className="p-8 md:p-12">
@@ -623,8 +610,8 @@ export default function Index() {
                     key={index}
                     onClick={() => goToTestimonial(index)}
                     className={`w-3 h-3 rounded-full transition-all duration-300 ${activeTestimonial === index
-                        ? "bg-primary w-8"
-                        : "bg-slate-300 dark:bg-slate-600 hover:bg-primary/50"
+                      ? "bg-primary w-8"
+                      : "bg-slate-300 hover:bg-primary/50"
                       }`}
                   />
                 ))}
@@ -636,7 +623,7 @@ export default function Index() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={prevTestimonial}
-                  className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="p-3 rounded-2xl bg-white border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <ChevronLeftIcon className="w-6 h-6" />
                 </motion.button>
@@ -645,7 +632,7 @@ export default function Index() {
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={nextTestimonial}
-                  className="p-3 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="p-3 rounded-2xl bg-white border border-slate-200 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <ChevronRightIcon className="w-6 h-6" />
                 </motion.button>
@@ -681,7 +668,7 @@ export default function Index() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.8 + index * 0.1 }}
                 whileHover={{ scale: 1.05 }}
-                className="text-center p-6 rounded-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shadow-lg backdrop-blur-sm"
+                className="text-center p-6 rounded-2xl bg-white border border-slate-200 shadow-lg backdrop-blur-sm"
               >
                 <div className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
                   {stat.value}
@@ -694,7 +681,7 @@ export default function Index() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="container py-20">
+      <section id="contact" className="container py-20 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
