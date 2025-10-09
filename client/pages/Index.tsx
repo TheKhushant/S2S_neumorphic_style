@@ -3,7 +3,7 @@ import Layout from "@/components/site/Layout";
 import Hero from "@/components/site/Hero";
 import Stats from "@/components/site/Stats";
 import ContactForm from "@/components/site/ContactForm";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, stagger } from "@/lib/animations";
 import {
@@ -20,7 +20,7 @@ import {
   ChevronRightIcon,
   StarIcon
 } from "@heroicons/react/24/outline";
-import PosterTemplates from "../components/site/PosterTemplates"
+import PosterTemplates from "../components/site/PosterTemplates";
 
 export default function Index() {
   const [hoveredCourse, setHoveredCourse] = useState(null);
@@ -28,10 +28,12 @@ export default function Index() {
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const sliderRef = useRef(null);
+  const navigate = useNavigate();
 
-  // Featured courses with more details
+  // Featured courses with more details and unique IDs
   const featuredCourses = [
     {
+      id: "python-dsa",
       title: "Python + DSA",
       description: "Master Python programming with advanced Data Structures and Algorithms",
       duration: "12 weeks",
@@ -42,6 +44,7 @@ export default function Index() {
       features: ["Live Sessions", "100+ Problems", "Interview Prep"]
     },
     {
+      id: "databricks",
       title: "Databricks",
       description: "Become an expert in big data processing and analytics",
       duration: "10 weeks",
@@ -52,6 +55,7 @@ export default function Index() {
       features: ["Real Projects", "Cloud Integration", "Certification"]
     },
     {
+      id: "ai-data-analytics",
       title: "AI-Data Analytics",
       description: "AI-powered data analysis and machine learning applications",
       duration: "14 weeks",
@@ -156,14 +160,18 @@ export default function Index() {
     setActiveTestimonial(index);
   };
 
+  // Handle course click
+  const handleCourseClick = (courseId) => {
+    navigate(`/courses/${courseId}`);
+  };
+
   return (
     <Layout>
-      {/* Removed Animated Background Elements */}
       <Hero />
       <PosterTemplates />
 
       {/* Featured Courses Section */}
-      <section id="courses" className="container py-20 relative bg-white">
+      <section id="courses" className="container py-20 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -200,11 +208,12 @@ export default function Index() {
         >
           {featuredCourses.map((course, i) => (
             <motion.div
-              key={course.title}
+              key={course.id}
               variants={fadeInUp(i * 0.1)}
               whileHover={{ y: -8, scale: 1.02 }}
               onHoverStart={() => setHoveredCourse(i)}
               onHoverEnd={() => setHoveredCourse(null)}
+              onClick={() => handleCourseClick(course.id)}
               className={`group relative rounded-2xl bg-gradient-to-br from-background to-muted/20 p-6 border border-border/50 overflow-hidden backdrop-blur-sm cursor-pointer transition-all duration-500 ${hoveredCourse === i ? course.bgColor : 'hover:from-primary/5 hover:to-purple-600/5'
                 }`}
             >
@@ -284,13 +293,12 @@ export default function Index() {
                   whileTap={{ scale: 0.95 }}
                   className="mt-6"
                 >
-                  <Link
-                    to="/courses"
+                  <button
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 group"
                   >
                     <span>Explore Course</span>
                     <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </button>
                 </motion.div>
               </div>
             </motion.div>
@@ -323,7 +331,7 @@ export default function Index() {
       <Stats />
 
       {/* About Us Section */}
-      <section id="about" className="container py-20 relative bg-white">
+      <section id="about" className="container py-20 bg-white">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
@@ -366,7 +374,6 @@ export default function Index() {
                 </p>
               </motion.div>
 
-              {/* Interactive Accordion Sections */}
               <div className="space-y-4">
                 {[
                   {
@@ -418,7 +425,6 @@ export default function Index() {
                   onPause={() => setIsVideoPlaying(false)}
                 />
 
-                {/* Video Overlay */}
                 <AnimatePresence>
                   {!isVideoPlaying && (
                     <motion.div
@@ -439,7 +445,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Floating Elements */}
             <motion.div
               animate={{
                 y: [0, -10, 0],
@@ -475,8 +480,8 @@ export default function Index() {
       </section>
 
       {/* Professional Testimonials Section */}
-      <section id="testimonials" className="py-20 relative overflow-hidden bg-white">
-        <div className="container relative">
+      <section id="testimonials" className="py-20 bg-white">
+        <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -503,16 +508,13 @@ export default function Index() {
             </p>
           </motion.div>
 
-          {/* Professional Testimonials Carousel */}
           <div
             className="relative max-w-6xl mx-auto"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
-            {/* Main Testimonial Display */}
             <div className="relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200">
               <div className="grid lg:grid-cols-2">
-                {/* Testimonial Content */}
                 <div className="p-8 md:p-12">
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -523,24 +525,20 @@ export default function Index() {
                       transition={{ duration: 0.5 }}
                       className="h-full flex flex-col justify-center"
                     >
-                      {/* Quote Icon */}
                       <div className="w-12 h-12 bg-gradient-to-r from-primary to-purple-600 rounded-2xl flex items-center justify-center mb-6">
                         <ChatBubbleLeftRightIcon className="w-6 h-6 text-white" />
                       </div>
 
-                      {/* Rating */}
                       <div className="flex gap-1 mb-6">
                         {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
                           <StarIcon key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
                         ))}
                       </div>
 
-                      {/* Quote */}
                       <blockquote className="text-xl md:text-2xl text-foreground/80 leading-relaxed mb-8 font-light italic">
                         "{testimonials[activeTestimonial].quote}"
                       </blockquote>
 
-                      {/* Author Info */}
                       <div className="flex items-center gap-4">
                         <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
                           {testimonials[activeTestimonial].author.split(' ').map(n => n[0]).join('')}
@@ -558,7 +556,6 @@ export default function Index() {
                         </div>
                       </div>
 
-                      {/* Achievements */}
                       <div className="flex flex-wrap gap-2 mt-6">
                         {testimonials[activeTestimonial].achievements.map((achievement, index) => (
                           <motion.span
@@ -576,7 +573,6 @@ export default function Index() {
                   </AnimatePresence>
                 </div>
 
-                {/* Visual Side */}
                 <div className="bg-gradient-to-br from-primary/5 to-purple-600/5 p-8 md:p-12 flex items-center justify-center">
                   <motion.div
                     key={activeTestimonial}
@@ -601,9 +597,7 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Navigation Controls */}
             <div className="flex items-center justify-between mt-8">
-              {/* Dots Indicator */}
               <div className="flex gap-2">
                 {testimonials.map((_, index) => (
                   <button
@@ -617,7 +611,6 @@ export default function Index() {
                 ))}
               </div>
 
-              {/* Navigation Buttons */}
               <div className="flex gap-3">
                 <motion.button
                   whileHover={{ scale: 1.1 }}
@@ -639,7 +632,6 @@ export default function Index() {
               </div>
             </div>
 
-            {/* Auto-play Indicator */}
             <div className="text-center mt-6">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm border border-primary/20">
                 <div className={`w-2 h-2 rounded-full ${isPaused ? 'bg-yellow-500' : 'bg-green-500 animate-pulse'}`} />
@@ -648,7 +640,6 @@ export default function Index() {
             </div>
           </div>
 
-          {/* Stats Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -680,7 +671,6 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Contact Section */}
       <section id="contact" className="container py-20 bg-white">
         <motion.div
           initial={{ opacity: 0, y: 30 }}

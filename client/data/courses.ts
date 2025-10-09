@@ -1,3 +1,4 @@
+
 export interface Module {
   title: string;
   topics: string[];
@@ -21,7 +22,10 @@ export interface Course {
   image?: string;
   certificate?: string;
   demoVideo?: string;
+  color?: string;
+  bgColor?: string;
 }
+
 export const courses: Course[] = [
   {
     id: "fullstack-java",
@@ -63,8 +67,9 @@ export const courses: Course[] = [
     image: "https://www.vcubesoftsolutions.com/wp-content/uploads/2023/11/image.jpg",
     certificate: "Certificate of Completion: Full-Stack Java Developer",
     demoVideo: "/videos/fullstack-java-demo.mp4",
+    color: "from-blue-500 to-blue-700",
+    bgColor: "from-blue-500/10 to-blue-700/10",
   },
-
   {
     id: "python-dsa",
     title: "Python & DSA",
@@ -102,45 +107,8 @@ export const courses: Course[] = [
     image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     certificate: "Certificate of Completion: Python & DSA",
     demoVideo: "/videos/python-dsa-demo.mp4",
-  },
-  {
-    id: "ai-data-analytics",
-    title: "AI-Data Analytics Training & Certification",
-    short: "AI-Powered Data Analytics with Forage Certification",
-    description:
-      "Master AI-driven data analytics with hands-on training, real-world datasets, and a Forage certification, starting from 6th October.",
-    duration: "3 Months",
-    fees: "₹18,000",
-    level: "Intermediate",
-    category: "Data Analytics",
-    syllabus: [
-      "Excel Spreadsheet, Data Aggregation, Pivot Charts",
-      "BI Tools, Data Modeling, AI based Visualization, Query",
-      "SQL database, Wildcard Operators, Stored procedure",
-      "Python, Programming Strings, Exception Handling, oops",
-      "Python for Data, regex, WebScraping, Numpy, API",
-    ],
-    modules: [
-      { title: "Excel & Data Basics", topics: ["Spreadsheet", "Data Aggregation", "Pivot Charts"] },
-      { title: "BI & Visualization", topics: ["BI Tools", "Data Modeling", "AI Visualization", "Query"] },
-      { title: "SQL & Database", topics: ["SQL", "Wildcard Operators", "Stored Procedure"] },
-      { title: "Python Fundamentals", topics: ["Programming", "Strings", "Exception Handling", "OOPs"] },
-      { title: "Advanced Python", topics: ["Data Handling", "Regex", "WebScraping", "Numpy", "API"] },
-    ],
-    projects: [
-      "Data Visualization Dashboard with BI Tools",
-      "WebScraping and Data Analysis Project",
-    ],
-    outcomes: [
-      "Analyze and visualize data using AI tools",
-      "Develop skills for data analyst roles",
-      "Earn a Forage certification and placement assistance",
-    ],
-    prerequisites: ["Basic computer skills", "Interest in data analysis"],
-    schedule: "Batches start from 6th October",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: AI-Data Analytics with Forage Certification",
-    demoVideo: "/videos/ai-data-analytics-demo.mp4",
+    color: "from-green-500 to-green-700",
+    bgColor: "from-green-500/10 to-green-700/10",
   },
   {
     id: "cyber-security",
@@ -176,6 +144,8 @@ export const courses: Course[] = [
     image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     certificate: "Certificate of Completion: Cyber Security",
     demoVideo: "/videos/cyber-security-demo.mp4",
+    color: "from-red-500 to-red-700",
+    bgColor: "from-red-500/10 to-red-700/10",
   },
   {
     id: "digital-marketing",
@@ -210,103 +180,8 @@ export const courses: Course[] = [
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     certificate: "Certificate of Completion: Digital Marketing",
     demoVideo: "/videos/digital-marketing-demo.mp4",
-  },
-  {
-    id: "data-analytics",
-    title: "Data Analytics",
-    short: "Expert-Led Data Analytics Training",
-    description:
-      "Explore data analytics with our expert-led training program! From data collection to visualization, statistical analysis, and machine learning, gain hands-on experience with real-world projects. Whether you're a beginner or experienced, we'll equip you to uncover insights and make informed decisions. Join us now!",
-    duration: "3 Months",
-    fees: "",
-    level: "Beginner",
-    category: "Data Analytics",
-    syllabus: [
-      "Data Collection Techniques",
-      "Data Visualization Tools",
-      "Statistical Analysis",
-      "Machine Learning Basics",
-    ],
-    modules: [
-      { title: "Data Collection", topics: ["Techniques", "Sources"] },
-      { title: "Visualization", topics: ["Tools", "Charts"] },
-      { title: "Analysis", topics: ["Statistics", "Machine Learning"] },
-    ],
-    projects: ["Data Visualization Dashboard", "Predictive Analysis Model"],
-    outcomes: [
-      "Uncover insights from data",
-      "Master statistical and ML techniques",
-      "Make informed business decisions",
-    ],
-    prerequisites: ["Basic math skills", "Interest in data"],
-    schedule: "Weekday batches",
-    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: Data Analytics",
-    demoVideo: "/videos/data-analytics-demo.mp4",
-  },
-  {
-    id: "web-development",
-    title: "Web Development",
-    short: "Dynamic Web Development Training",
-    description:
-      "Discover the full potential of your web development abilities through our dynamic training program. Led by industry experts, our comprehensive curriculum includes HTML, CSS, JavaScript, and backend development. Whether you're a beginner or an experienced developer, this is the ideal path to enhance your skills. Get hands-on experience and unleash your potential now!",
-    duration: "3 Months",
-    fees: "",
-    level: "Beginner",
-    category: "Web Development",
-    syllabus: [
-      "HTML & CSS Fundamentals",
-      "JavaScript Basics",
-      "Backend Development Basics",
-    ],
-    modules: [
-      { title: "Frontend Basics", topics: ["HTML", "CSS", "JavaScript"] },
-      { title: "Backend Introduction", topics: ["Node.js", "Express"] },
-    ],
-    projects: ["Static Website", "Simple Backend API"],
-    outcomes: [
-      "Build functional websites",
-      "Enhance development skills",
-      "Gain hands-on experience",
-    ],
-    prerequisites: ["Basic computer skills"],
-    schedule: "Weekend batches",
-    image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: Web Development",
-    demoVideo: "/videos/web-development-demo.mp4",
-  },
-  {
-    id: "full-stack-development",
-    title: "Full Stack Development",
-    short: "Comprehensive Full Stack Training",
-    description:
-      "Elevate your skills with our full stack development training. Led by industry experts, you'll learn HTML, CSS, JavaScript, server-side programming, databases, clouds and more. Build dynamic web apps hands-on, whether you're a beginner or seasoned pro. Advance your tech career - join us today!",
-    duration: "5 Months",
-    fees: "",
-    level: "Beginner",
-    category: "Fullstack",
-    syllabus: [
-      "HTML, CSS, JavaScript",
-      "Server-side Programming",
-      "Databases",
-      "Cloud Technologies",
-    ],
-    modules: [
-      { title: "Frontend Development", topics: ["HTML", "CSS", "JavaScript"] },
-      { title: "Backend Development", topics: ["Node.js", "Python", "Databases"] },
-      { title: "Cloud Basics", topics: ["AWS", "Azure"] },
-    ],
-    projects: ["Dynamic Web App", "Cloud-Deployed Application"],
-    outcomes: [
-      "Develop full stack web applications",
-      "Master cloud and database technologies",
-      "Advance your tech career",
-    ],
-    prerequisites: ["Basic programming knowledge"],
-    schedule: "Weekday / Weekend batches",
-    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: Full Stack Development",
-    demoVideo: "/videos/full-stack-development-demo.mp4",
+    color: "from-purple-500 to-purple-700",
+    bgColor: "from-purple-500/10 to-purple-700/10",
   },
   {
     id: "microsoft-azure",
@@ -339,6 +214,8 @@ export const courses: Course[] = [
     image: "https://images.unsplash.com/photo-1484704849700-f032a568e944?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
     certificate: "Certificate of Completion: Microsoft Azure",
     demoVideo: "/videos/microsoft-azure-demo.mp4",
+    color: "from-blue-600 to-blue-800",
+    bgColor: "from-blue-600/10 to-blue-800/10",
   },
   {
     id: "salesforce",
@@ -371,6 +248,8 @@ export const courses: Course[] = [
     image: "https://www.resco.net/app/uploads/what-is-salesforce.jpg",
     certificate: "Certificate of Completion: Salesforce",
     demoVideo: "/videos/salesforce-demo.mp4",
+    color: "from-teal-500 to-teal-700",
+    bgColor: "from-teal-500/10 to-teal-700/10",
   },
   {
     id: "itil",
@@ -405,6 +284,94 @@ export const courses: Course[] = [
     image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     certificate: "Certificate of Completion: ITIL",
     demoVideo: "/videos/itil-demo.mp4",
+    color: "from-indigo-500 to-indigo-700",
+    bgColor: "from-indigo-500/10 to-indigo-700/10",
+  },
+  {
+    id: "databricks",
+    title: "Databricks",
+    short: "Master Big Data with Databricks",
+    description:
+      "Master big data processing and analytics with our comprehensive Databricks training program. Learn to leverage Databricks for data engineering, machine learning, and real-time analytics. Gain hands-on experience with Spark, Delta Lake, and cloud integration through real-world projects.",
+    duration: "3 Months",
+    fees: "",
+    level: "Intermediate",
+    category: "Big Data",
+    syllabus: [
+      "Introduction to Databricks",
+      "Apache Spark Fundamentals",
+      "Data Engineering with Delta Lake",
+      "Machine Learning with MLflow",
+      "Real-Time Analytics",
+      "Cloud Integration (AWS/Azure/GCP)",
+      "Data Visualization in Databricks",
+      "Performance Optimization",
+    ],
+    modules: [
+      { title: "Databricks Basics", topics: ["Platform Overview", "Workspace Setup", "Notebooks"] },
+      { title: "Spark & Data Engineering", topics: ["Spark SQL", "DataFrames", "Delta Lake"] },
+      { title: "Machine Learning", topics: ["MLflow", "Model Training", "Hyperparameter Tuning"] },
+      { title: "Advanced Analytics", topics: ["Streaming", "Visualization", "Optimization"] },
+    ],
+    projects: [
+      "Real-Time Data Pipeline with Delta Lake",
+      "Machine Learning Model Deployment with MLflow",
+    ],
+    outcomes: [
+      "Build scalable data pipelines",
+      "Develop and deploy machine learning models",
+      "Master big data analytics with Databricks",
+    ],
+    prerequisites: ["Basic programming knowledge (Python/Scala)", "Familiarity with SQL"],
+    schedule: "Weekday / Weekend batches available",
+    image: "https://images.unsplash.com/photo-1516321318427-d4b6a33f1501?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    certificate: "Certificate of Completion: Databricks",
+    demoVideo: "/videos/databricks-demo.mp4",
+    color: "from-cyan-500 to-cyan-700",
+    bgColor: "from-cyan-500/10 to-cyan-700/10",
+  },
+  {
+    id: "ai-data-analytics",
+    title: "AI-Powered Data Analytics",
+    short: "Master AI-Driven Data Analysis",
+    description:
+      "Unlock the power of AI to analyze and interpret complex datasets. This course covers machine learning, data visualization, and predictive analytics, empowering you to derive actionable insights from data using cutting-edge AI tools and techniques.",
+    duration: "3.5 Months",
+    fees: "",
+    level: "Intermediate",
+    category: "Data Science",
+    syllabus: [
+      "Introduction to Data Analytics",
+      "Python for Data Analysis",
+      "Machine Learning Fundamentals",
+      "Predictive Analytics",
+      "Data Visualization with Tableau",
+      "AI Tools (TensorFlow, PyTorch)",
+      "Big Data Integration",
+      "Real-World Case Studies",
+    ],
+    modules: [
+      { title: "Data Analytics Basics", topics: ["Data Types", "Statistics", "Data Cleaning"] },
+      { title: "Machine Learning", topics: ["Supervised Learning", "Unsupervised Learning", "Model Evaluation"] },
+      { title: "Visualization & AI", topics: ["Tableau", "TensorFlow", "PyTorch"] },
+      { title: "Advanced Analytics", topics: ["Predictive Models", "Big Data", "Case Studies"] },
+    ],
+    projects: [
+      "Predictive Sales Forecasting Model",
+      "Customer Segmentation with AI",
+    ],
+    outcomes: [
+      "Apply AI to analyze complex datasets",
+      "Create predictive models for business applications",
+      "Visualize data effectively with modern tools",
+    ],
+    prerequisites: ["Basic Python programming", "Familiarity with statistics"],
+    schedule: "Weekday / Weekend batches available",
+    image: "https://images.unsplash.com/photo-1551288049-b1f3a0003a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    certificate: "Certificate of Completion: AI-Powered Data Analytics",
+    demoVideo: "../../videos/DAPreview.mp4",
+    color: "from-orange-500 to-orange-700",
+    bgColor: "from-orange-500/10 to-orange-700/10",
   },
 ];
 
