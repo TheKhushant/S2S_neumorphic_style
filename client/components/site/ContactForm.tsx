@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -5,11 +6,11 @@ export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleChange(e) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     setForm((s) => ({ ...s, [e.target.name]: e.target.value }));
   }
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!form.name || !form.email || !form.phone || !form.message) {
       alert("Please fill in all fields.");
@@ -35,8 +36,8 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contact" className="bg-background py-16">
-      <div className="container grid gap-10 md:grid-cols-2">
+    <section id="contact" className="bg-white py-16 w-full">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2">
         <div className="space-y-4">
           <h2 className="text-3xl font-extrabold tracking-tight">Get in Touch</h2>
           <p className="text-foreground/80">Have questions about courses, schedules, or fees? Send us a message via WhatsApp.</p>
