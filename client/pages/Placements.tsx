@@ -1084,7 +1084,7 @@ export default function Placements() {
         </div>
       </section> */}
 
-      Testimonials Section
+      {/* Testimonials Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
