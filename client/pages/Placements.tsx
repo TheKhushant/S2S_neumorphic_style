@@ -39,8 +39,7 @@ const testimonials = [
     id: 1,
     quote: "The instructors are top-notch and the curriculum is very practical. I landed a job just two months after completing the course!",
     author: "Niharika Sharma",
-    role: "Software Developer",
-    company: "Tech Solutions Inc.",
+
     rating: 5,
     avatar: "/Niharika.jpg",
     course: "Python + DSA",
@@ -50,8 +49,7 @@ const testimonials = [
     id: 2,
     quote: "Skill2Success's course gave me the skills and confidence I needed to switch my career. The projects were invaluable for my portfolio.",
     author: "Prateek Kumar",
-    role: "Frontend Engineer",
-    company: "Digital Innovations",
+
     rating: 5,
     avatar: "/pratik.jpg",
     course: "Full Stack Development",
@@ -61,8 +59,7 @@ const testimonials = [
     id: 3,
     quote: "Hands-on learning and personalized attention made all the difference. Highly recommend this course to anyone serious about data analysis.",
     author: "Raj Borkar",
-    role: "Data Analyst",
-    company: "Analytics Pro",
+
     rating: 5,
     avatar: "/Borkar.jpg",
     course: "AI-Data Analytics",
@@ -72,8 +69,7 @@ const testimonials = [
     id: 4,
     quote: "The projects were hands-on and very practical. I gained confidence in real-world data analysis and visualization techniques.",
     author: "Saloni Patel",
-    role: "Business Analyst",
-    company: "Data Insights Ltd.",
+
     rating: 5,
     avatar: "/girl.jpg",
     course: "Data Science",
@@ -83,8 +79,7 @@ const testimonials = [
     id: 5,
     quote: "The mentorship and guidance from Skill2Success helped me grow faster than I expected. The career support was exceptional.",
     author: "Ajay Singh",
-    role: "ML Engineer",
-    company: "AI Innovations",
+
     rating: 5,
     avatar: "/beard.jpg",
     course: "Machine Learning",
@@ -94,8 +89,7 @@ const testimonials = [
     id: 6,
     quote: "The projects and real-life case studies really boosted my confidence. The interview preparation sessions were incredibly helpful.",
     author: "Meenal Gupta",
-    role: "Data Scientist",
-    company: "Tech Analytics",
+
     rating: 5,
     avatar: "/Meenal.jpg",
     course: "AI-Data Analytics",
@@ -997,7 +991,7 @@ export default function Placements() {
       </section>
 
       {/* Success Stories and Placement Process */}
-      <section className="py-20 bg-white">
+      {/* <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="success-stories" className="space-y-12">
             <div className="text-center">
@@ -1088,9 +1082,9 @@ export default function Placements() {
             </TabsContent>
           </Tabs>
         </div>
-      </section>
+      </section> */}
 
-      {/* Testimonials Section */}
+      Testimonials Section
       <section className="py-20 bg-gradient-to-br from-slate-50 via-white to-blue-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center space-y-4 mb-16">
@@ -1112,7 +1106,7 @@ export default function Placements() {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-900 text-lg">{testimonial.author}</h3>
-                      <p className="text-sm text-gray-600">{testimonial.role} @ {testimonial.company}</p>
+                      {/* <p className="text-sm text-gray-600">{testimonial.role}  {testimonial.company}</p> */}
                       <div className="flex space-x-1">
                         {Array.from({ length: 5 }, (_, i) => (
                           <Star key={i} className={`h-4 w-4 ${i < testimonial.rating ? "text-yellow-400" : "text-gray-300"}`} />
