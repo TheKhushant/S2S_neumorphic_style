@@ -18,7 +18,7 @@ const navItems = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/50 bg-white backdrop-blur">
       <div className="container flex h-24 items-center justify-between">
         <Link to="/" className="flex items-center gap-2">
           <img
@@ -27,7 +27,6 @@ export default function Header() {
             className="h-[150px] w-[100px] md:h-20 md:w-20 sm:h-16 sm:w-16 object-contain"
             aria-hidden="true"
           />
-          
         </Link>
         <nav className="hidden items-center gap-6 md:flex">
           {navItems.map((item) => (
@@ -59,7 +58,7 @@ export default function Header() {
         </button>
       </div>
       {open && (
-        <div className="border-t border-border/50 bg-background md:hidden">
+        <div className="border-t border-border/50 bg-white md:hidden">
           <nav className="container grid gap-2 py-4">
             {navItems.map((item) => (
               <NavLink

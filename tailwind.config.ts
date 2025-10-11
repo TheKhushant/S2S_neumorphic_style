@@ -1,5 +1,4 @@
-import type { Config } from "tailwindcss";
-
+/** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ["class"],
   content: ["./client/**/*.{ts,tsx}"],
@@ -29,6 +28,7 @@ export default {
         ],
       },
       colors: {
+        // Existing colors
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -72,6 +72,15 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        // New brand colors
+        'brand-aqua': 'hsl(var(--brand-aqua))',
+        'brand-pink': 'hsl(var(--brand-pink))',
+        'brand-magenta': 'hsl(var(--brand-magenta))',
+        'brand-purple': 'hsl(var(--brand-purple))',
+        'brand-dark': 'hsl(var(--brand-dark))',
+        'success': 'hsl(var(--success))',
+        'warning': 'hsl(var(--warning))',
+        'info': 'hsl(var(--info))',
       },
       borderRadius: {
         lg: "var(--radius)",
