@@ -72,12 +72,12 @@ export default function Footer() {
         © {new Date().getFullYear()} Skill2Success. All rights reserved. <br />
         Developed by{" "}
         <a
-          href="https://ssinfotech.co/"
+          href="https://www.linkedin.com/in/tejas-khope"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-400 hover:underline"
         >
-          SS Infotech Team
+          Tejas khope 
         </a>.
       </div>
     </footer>
