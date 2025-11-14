@@ -86,7 +86,7 @@ export default function ContactForm() {
         </div>
         <div className="overflow-hidden rounded-xl border">
           <iframe
-            title="Skill2Success Nagpur Location"
+            title="Skill Training Center Nagpur Location"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.337405892367!2d79.067185!3d21.1363751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c1000c0583e5%3A0x2a9d4b509fe5934e!2sSS%20Infotech%20Nagpur!5e0!3m2!1sen!2sin!4v1695739200000!5m2!1sen!2sin"
             width="100%"
             height="350"

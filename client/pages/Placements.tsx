@@ -47,7 +47,7 @@ const testimonials = [
   },
   {
     id: 2,
-    quote: "Skill2Success's course gave me the skills and confidence I needed to switch my career. The projects were invaluable for my portfolio.",
+    quote: "Skill Training Center's course gave me the skills and confidence I needed to switch my career. The projects were invaluable for my portfolio.",
     author: "Prateek Kumar",
 
     rating: 5,
@@ -77,7 +77,7 @@ const testimonials = [
   },
   {
     id: 5,
-    quote: "The mentorship and guidance from Skill2Success helped me grow faster than I expected. The career support was exceptional.",
+    quote: "The mentorship and guidance from Skill Training Center helped me grow faster than I expected. The career support was exceptional.",
     author: "Ajay Singh",
 
     rating: 5,

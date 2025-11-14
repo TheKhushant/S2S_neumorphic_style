@@ -6,14 +6,22 @@ export default function Footer() {
       <div className="container grid gap-8 py-10 md:grid-cols-4">
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2">
-            <img
-              src="/logo.png"
-              alt="Skill2Success Logo"
-              className="h-8 w-8 md:h-6 md:w-6 sm:h-5 sm:w-5 object-contain"
-              aria-hidden="true"
-            />
+           <img
+  src="/newlogo.png"
+  alt="Skill Training Center Logo"
+  className="
+    w-16 h-16           /* default size */
+    sm:w-12 sm:h-12     /* small screens */
+    md:w-16 md:h-16     /* medium screens */
+    lg:w-20 lg:h-20     /* large screens */
+    xl:w-24 xl:h-24     /* extra-large screens */
+    object-contain
+  "
+  aria-hidden="true"
+/>
+
             <span className="text-lg font-extrabold tracking-tight text-white">
-              Skill2Success
+              Skill Training Center
             </span>
           </div>
           <p className="text-sm text-gray-400">
@@ -69,7 +77,7 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-gray-700 py-6 text-center text-xs text-gray-400">
-        © {new Date().getFullYear()} Skill2Success. All rights reserved. <br />
+        © {new Date().getFullYear()} Skill Training Center. All rights reserved. <br />
         Developed by{" "}
         <a
           href="https://www.linkedin.com/in/tejas-khope"

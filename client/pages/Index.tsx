@@ -82,7 +82,7 @@ export default function Index() {
     },
     {
       id: 2,
-      quote: "Skill2Success's course gave me the skills and confidence I needed to switch my career. The projects were invaluable for my portfolio.",
+      quote: "Skill Training Center's course gave me the skills and confidence I needed to switch my career. The projects were invaluable for my portfolio.",
       author: "Prateek Kumar",
       role: "Frontend Engineer",
       company: "Digital Innovations",
@@ -115,7 +115,7 @@ export default function Index() {
     },
     {
       id: 5,
-      quote: "The mentorship and guidance from Skill2Success helped me grow faster than I expected. The career support was exceptional.",
+      quote: "The mentorship and guidance from Skill Training Center helped me grow faster than I expected. The career support was exceptional.",
       author: "Ajay Singh",
       role: "ML Engineer",
       company: "AI Innovations",
@@ -350,7 +350,7 @@ export default function Index() {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
                 >
                   <TrophyIcon className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-semibold text-primary">About Skill2Success</span>
+                  <span className="text-sm font-semibold text-primary">About Skill Training Center</span>
                 </motion.div>
 
                 <h2 className="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
@@ -370,7 +370,7 @@ export default function Index() {
                     Where innovation meets excellence in the realm of IT solutions and education.
                   </p>
                   <p>
-                    Skill2Success is a premier software organization with a strong presence in Pune and Nagpur.
+                    Skill Training Center is a premier software organization with a strong presence in Pune and Nagpur.
                     We specialize in cutting-edge IT solutions, digital marketing, and transformative education programs.
                   </p>
                 </motion.div>
@@ -505,7 +505,7 @@ export default function Index() {
                 What Our Students Say
               </h2>
               <p className="mt-6 text-xl text-foreground/70 max-w-2xl mx-auto">
-                Real stories from our alumni who transformed their careers with Skill2Success
+                Real stories from our alumni who transformed their careers with Skill Training Center
               </p>
             </motion.div>
 

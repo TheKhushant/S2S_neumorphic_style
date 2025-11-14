@@ -101,7 +101,7 @@ export default function About() {
           </motion.div>
 
           <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
-            About Skill2Success
+            About Skill Training Center
           </h1>
           <p className="mt-6 text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
             Where innovation meets excellence in the realm of IT solutions and transformative education.
@@ -142,7 +142,7 @@ export default function About() {
           className="max-w-4xl mx-auto text-center mb-16"
         >
           <p className="text-lg text-foreground/70 leading-relaxed">
-            Skill2Success is a premier software organization with a strong presence in Pune and Nagpur.
+            Skill Training Center is a premier software organization with a strong presence in Pune and Nagpur.
             We specialize in cutting-edge IT solutions, digital marketing, and transformative education programs
             designed to bridge the gap between academia and industry.
           </p>
@@ -323,7 +323,7 @@ export default function About() {
                   </div>
                   <div>
                     <h4 className="font-semibold text-foreground mb-2">Email</h4>
-                    <p className="text-foreground/70">info@skill2success.com</p>
+                    <p className="text-foreground/70">info@Skill Training Center.com</p>
                   </div>
                 </div>
               </div>
