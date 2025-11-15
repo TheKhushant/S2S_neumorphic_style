@@ -2,8 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { SparklesIcon, PlayCircleIcon, TrophyIcon, EyeIcon, DocumentArrowDownIcon } from "@heroicons/react/24/outline";
-import poster1 from "../../../public/poster1.jpg";
-import poster2 from "../../../public/poster2.jpg";
+import newposter6 from "../../../public/newposter6.jpg";
+import newposter5 from "../../../public/newposter5.jpg";
 import poster3 from "../../../public/poster3.jpg";
 import poster4 from "../../../public/poster4.jpg";
 
@@ -16,7 +16,7 @@ export default function PosterTemplates() {
       icon: SparklesIcon,
       color: "from-blue-500 to-cyan-500",
       bgColor: "from-blue-500/10 to-cyan-500/10",
-      previewImage: poster1,
+      previewImage: newposter6,
     },
     {
       title: "AI-Data Analytics",
@@ -24,7 +24,7 @@ export default function PosterTemplates() {
       icon: PlayCircleIcon,
       color: "from-purple-500 to-pink-500",
       bgColor: "from-purple-500/10 to-pink-500/10",
-      previewImage: poster2,
+      previewImage: newposter5,
     },
     {
       title: "AI  Data-Bricks Seminar",
