@@ -6,6 +6,7 @@ import ContactForm from "@/components/site/ContactForm";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, stagger } from "@/lib/animations";
+import CoursesSection from "@/components/site/CoursesSection";
 import {
   SparklesIcon,
   PlayCircleIcon,
@@ -20,6 +21,7 @@ import {
   ChevronRightIcon,
   StarIcon
 } from "@heroicons/react/24/outline";
+import PosterTemplates from "@/components/site/PosterTemplates";
 
 export default function Index() {
   const [hoveredCourse, setHoveredCourse] = useState<number | null>(null);
@@ -161,111 +163,9 @@ export default function Index() {
       <div className="min-h-screen bg-[#e0e5ec]">
         <Hero />
         {/* PosterTemplates assumed to be updated separately or kept as is */}
-
+        <PosterTemplates />
         {/* ==================== FEATURED COURSES ==================== */}
-        <section id="courses" className="container py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mx-auto max-w-4xl text-center mb-16"
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6"
-            >
-              <SparklesIcon className="w-5 h-5 text-violet-600" />
-              <span className="text-sm font-semibold text-violet-700">AI-Powered Learning</span>
-            </motion.div>
-
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-800 tracking-tight">
-              Top Courses
-            </h2>
-            <p className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">
-              Hand-picked programs designed with industry experts to accelerate your career with{" "}
-              <span className="font-semibold text-violet-700">AI-powered mentorship</span>.
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={stagger}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-          >
-            {featuredCourses.map((course, i) => (
-              <motion.div
-                key={course.id}
-                variants={fadeInUp(i * 0.1)}
-                whileHover={{ y: -12, scale: 1.02 }}
-                onHoverStart={() => setHoveredCourse(i)}
-                onHoverEnd={() => setHoveredCourse(null)}
-                onClick={() => handleCourseClick(course.id)}
-                className={`group relative rounded-3xl bg-[#e0e5ec] p-8 cursor-pointer transition-all duration-500 ${raisedShadow} ${softHoverLift}`}
-              >
-                {/* Icon */}
-                <motion.div
-                  animate={{ scale: hoveredCourse === i ? 1.15 : 1 }}
-                  className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${course.color} text-white mb-6 shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff]`}
-                >
-                  <course.icon className="w-7 h-7" />
-                </motion.div>
-
-                <h3 className="text-2xl font-bold text-gray-800 mb-3">{course.title}</h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{course.description}</p>
-
-                {/* Meta Info */}
-                <div className="space-y-3 mb-8 text-sm">
-                  <div className="flex justify-between text-gray-500">
-                    <span>Duration</span>
-                    <span className="font-semibold text-gray-700">{course.duration}</span>
-                  </div>
-                  <div className="flex justify-between text-gray-500">
-                    <span>Level</span>
-                    <span className="font-semibold text-gray-700">{course.level}</span>
-                  </div>
-                </div>
-
-                {/* Features */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {course.features.map((feature, idx) => (
-                    <span
-                      key={idx}
-                      className="px-4 py-1.5 text-xs font-medium rounded-2xl bg-white text-gray-700 shadow-[2px_2px_4px_#bebebe,-2px_-2px_4px_#ffffff]"
-                    >
-                      {feature}
-                    </span>
-                  ))}
-                </div>
-
-                {/* CTA Button - Raised */}
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className={`w-full py-4 rounded-2xl font-semibold text-white bg-gradient-to-r ${course.color} flex items-center justify-center gap-2 shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all`}
-                >
-                  Explore Course
-                  <ArrowRightIcon className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </motion.button>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          {/* View All Courses */}
-          <div className="text-center mt-16">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                to="/courses"
-                className="inline-flex items-center gap-3 px-10 py-5 rounded-3xl bg-[#e0e5ec] text-gray-800 font-bold text-lg shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] hover:shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] transition-all duration-300"
-              >
-                <EyeIcon className="w-6 h-6" />
-                View All Courses
-              </Link>
-            </motion.div>
-          </div>
-        </section>
+        <CoursesSection/>
 
         <Stats />
 

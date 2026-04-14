@@ -1,50 +1,48 @@
-import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { SparklesIcon, PlayCircleIcon, TrophyIcon, EyeIcon, DocumentArrowDownIcon } from "@heroicons/react/24/outline";
+import { SparklesIcon, PlayCircleIcon, TrophyIcon, EyeIcon } from "@heroicons/react/24/outline";
 import newposter6 from "../../../public/newposter6.jpg";
 import newposter5 from "../../../public/newposter5.jpg";
 import poster3 from "../../../public/poster3.jpg";
 import poster4 from "../../../public/poster4.jpg";
 
 export default function PosterTemplates() {
-  // Poster templates data
+  const accentColor = "#e5bcfb";
+  const accentDark = "#c084fc";
+
+  // Poster templates data (unchanged)
   const posterTemplates = [
     {
       title: "AI-Data Analytics",
       description: "Traning & Certification",
       icon: SparklesIcon,
-      color: "from-blue-500 to-cyan-500",
-      bgColor: "from-blue-500/10 to-cyan-500/10",
+      gradient: `linear-gradient(135deg, ${accentColor}, ${accentDark})`,
       previewImage: newposter6,
     },
     {
       title: "AI-Data Analytics",
       description: "Traning & Certification",
       icon: PlayCircleIcon,
-      color: "from-purple-500 to-pink-500",
-      bgColor: "from-purple-500/10 to-pink-500/10",
+      gradient: `linear-gradient(135deg, #a5b4fc, ${accentColor})`,
       previewImage: newposter5,
     },
     {
-      title: "AI  Data-Bricks Seminar",
+      title: "AI Data-Bricks Seminar",
       description: "AI Analytics Engineering On Data-Bricks Seminar",
       icon: TrophyIcon,
-      color: "from-orange-500 to-red-500",
-      bgColor: "from-orange-500/10 to-red-500/10",
+      gradient: `linear-gradient(135deg, ${accentColor}, #f9a8d4)`,
       previewImage: poster3,
     },
     {
       title: "Answercraft",
       description: "Professional traning On communication",
       icon: TrophyIcon,
-      color: "from-orange-500 to-red-500",
-      bgColor: "from-orange-500/10 to-red-500/10",
+      gradient: `linear-gradient(135deg, ${accentColor}, #f472b6)`,
       previewImage: poster4,
     },
   ];
 
-  // Function to scroll to contact section
+  // Scroll to contact (unchanged)
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
@@ -52,121 +50,102 @@ export default function PosterTemplates() {
     }
   };
 
+  const raisedShadow = "shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff]";
+  const softHover = "hover:shadow-[10px_10px_20px_#bebebe,-10px_-10px_20px_#ffffff] hover:-translate-y-1";
+
   return (
-    <section id="posters" className="container py-10 relative bg-white">
+    <section id="posters" className="container py-16 bg-[#e0e5ec]">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto max-w-lg text-center mb-8"
+        className="mx-auto max-w-lg text-center mb-12"
       >
+        <div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6 mx-auto">
+          <SparklesIcon className="w-5 h-5" style={{ color: accentColor }} />
+          <span className="text-sm font-semibold" style={{ color: "#6b21a8" }}>Latest Updates</span>
+        </div>
 
-        <h2 className="text-2xl md:text-5xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
-          Updates
-        </h2>
-        <p className="mt-4 text-base text-foreground/70 max-w-md mx-auto">
-           courses, webinars, and success stories.
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-800">Updates</h2>
+        <p className="mt-4 text-lg text-gray-600 max-w-md mx-auto">
+          Latest courses, webinars, and success stories.
         </p>
       </motion.div>
 
-      {/* Cards Container */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto px-4">
+      {/* Neumorphic Poster Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto px-4">
         {posterTemplates.map((template, index) => {
           const IconComponent = template.icon;
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.6 }}
-              className="relative w-full max-w-[250px] h-[200px] rounded-xl bg-white p-3 border border-border/50 overflow-hidden cursor-pointer mx-auto"
-              whileHover={{ scale: 1.05 }}
+              transition={{ delay: index * 0.08 }}
+              whileHover={{ y: -8, scale: 1.03 }}
               onClick={scrollToContact}
               role="button"
               tabIndex={0}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  scrollToContact();
-                }
+                if (e.key === 'Enter' || e.key === ' ') scrollToContact();
               }}
+              className={`group relative h-[260px] rounded-3xl bg-[#e0e5ec] p-5 cursor-pointer overflow-hidden transition-all duration-300 ${raisedShadow} ${softHover}`}
             >
-              {/* Animated Background Glow */}
-              <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${template.bgColor} opacity-10 rounded-xl pointer-events-none transition-all duration-500`}
-              />
-
-              {/* Border Glow Effect */}
-              <motion.div
-                className={`absolute inset-0 rounded-xl bg-gradient-to-r ${template.color} opacity-20 p-[1px] pointer-events-none transition-all duration-500`}
-              >
-                <div className="w-full h-full rounded-xl bg-white" />
-              </motion.div>
+              {/* Soft Inner Highlight */}
+              <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent rounded-3xl pointer-events-none" />
 
               <div className="relative z-10 flex flex-col h-full">
-                {/* Poster Icon */}
-                <motion.div
-                  className={`inline-flex p-1.5 rounded-md bg-gradient-to-r ${template.color} text-white mb-2 transition-all duration-300`}
+                {/* Icon */}
+                {/* <div
+                  className="inline-flex p-3 rounded-2xl text-white mb-4 shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff]"
+                  style={{ background: template.gradient }}
                 >
-                  <IconComponent className="w-4 h-4" />
-                </motion.div>
+                  <IconComponent className="w-5 h-5" />
+                </div> */}
 
-                {/* Poster Preview */}
-                <div className="flex-grow rounded-md overflow-hidden mb-2 relative">
+                {/* Poster Image Preview */}
+                <div className="flex-1 rounded-2xl overflow-hidden mb-4 relative shadow-inner bg-white">
                   <img
                     src={template.previewImage}
                     alt={`${template.title} preview`}
-                    className="w-full h-[80px] object-cover"
+                    className="w-full h-full object-cover"
                   />
+                  
+                  {/* Hover Overlay */}
                   <motion.div
                     initial={{ opacity: 0 }}
                     whileHover={{ opacity: 1 }}
-                    className="absolute inset-0 bg-black/50 flex items-center justify-center rounded-md"
+                    className="absolute inset-0 bg-black/40 flex items-center justify-center transition-all duration-300"
                   >
-                    <EyeIcon className="w-5 h-5 text-white" />
+                    <div className="w-10 h-10 rounded-full bg-white/90 flex items-center justify-center shadow-[2px_2px_6px_#bebebe]">
+                      <EyeIcon className="w-5 h-5" style={{ color: "#6b21a8" }} />
+                    </div>
                   </motion.div>
                 </div>
 
-                <h3 className="text-xs font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent leading-tight">
-                  {template.title}
-                </h3>
-                <p className="mt-1 text-xs text-foreground/70 leading-tight line-clamp-2">
-                  {template.description}
-                </p>
-
-                {/* Optional Download Button - only show if downloadLink exists */}
-                {template.downloadLink && (
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-2"
-                  >
-                    <a
-                      href={template.downloadLink}
-                      download
-                      className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300 group text-xs"
-                    >
-                      <span>Download</span>
-                      <DocumentArrowDownIcon className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </a>
-                  </motion.div>
-                )}
+                {/* Content */}
+                <div className="space-y-1">
+                  <h3 className="font-bold text-gray-800 text-base leading-tight line-clamp-1">
+                    {template.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-tight line-clamp-2">
+                    {template.description}
+                  </p>
+                </div>
               </div>
+
+              {/* Subtle bottom shine effect */}
+              <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-black/5 to-transparent rounded-b-3xl pointer-events-none" />
             </motion.div>
           );
         })}
       </div>
 
-      {/* View All Templates CTA */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.6 }}
-        className="text-center mt-8"
-      >
-      </motion.div>
+      {/* Optional CTA - currently empty in your code */}
+      <div className="text-center mt-10">
+        {/* You can add a "View All Updates" button here later if needed */}
+      </div>
     </section>
   );
 }
