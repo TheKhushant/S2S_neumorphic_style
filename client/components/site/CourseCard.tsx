@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence, type Variants } from "framer-motion";
 import { Link } from "react-router-dom";
 import type { Course } from "@/data/courses";
 import {
   SparklesIcon,
   ClockIcon,
   AcademicCapIcon,
-  ChartBarIcon,
   PlayCircleIcon,
   ChevronDownIcon,
   CheckBadgeIcon,
@@ -17,7 +15,10 @@ export default function CourseCard({ course }: { course: Course }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const cardVariants = {
+  const accentColor = "#e5bcfb";
+  const accentDark = "#c084fc";
+
+  const cardVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
@@ -25,11 +26,15 @@ export default function CourseCard({ course }: { course: Course }) {
       transition: { type: "spring", stiffness: 300, damping: 24 },
     },
     hover: {
-      y: -6,
+      y: -8,
       scale: 1.02,
       transition: { type: "spring", stiffness: 400, damping: 25 },
     },
   };
+
+  const raisedShadow = "shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff]";
+  const insetShadow = "shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff]";
+  const softHover = "hover:shadow-[12px_12px_24px_#bebebe,-12px_-12px_24px_#ffffff]";
 
   return (
     <motion.article
@@ -39,179 +44,171 @@ export default function CourseCard({ course }: { course: Course }) {
       whileHover="hover"
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="relative bg-white rounded-2xl border border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden group cursor-pointer max-w-sm mx-auto"
-      style={{
-        background: "white",
-        borderColor: "rgb(229 231 235)"
-      }}
+      className={`relative bg-[#e0e5ec] rounded-3xl overflow-hidden cursor-pointer transition-all duration-300 group max-w-x mx-auto w-full h-full flex flex-col ${raisedShadow} ${softHover}`}
     >
-      {/* Background Highlight Effect - Removed colored overlay */}
-
-      {/* Course Image */}
-      <div className="relative overflow-hidden">
+      {/* Course Image Container - Fixed height */}
+      <div className="relative overflow-hidden rounded-t-3xl flex-shrink-0">
         <motion.img
           whileHover={{ scale: 1.08 }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
           src={course.image}
           alt={course.title}
-          className="w-full h-48 object-cover relative z-10"
+          className="w-full h-52 object-cover"
         />
 
-        {/* Enhanced Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20" />
+        {/* Soft Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-        {/* Category Badge */}
-        <div className="absolute top-3 left-3 z-30">
+        {/* Category Badge - Raised */}
+        <div className="absolute top-4 left-4 z-30">
           <span
-            className="px-3 py-1.5 bg-white/95 backdrop-blur-sm text-gray-900 text-xs font-semibold rounded-full border border-gray-200 shadow-lg"
-            style={{ background: "white" }}
+            className="px-4 py-2 text-xs font-semibold rounded-2xl bg-[#e0e5ec] text-gray-800 shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff]"
           >
             {course.category}
           </span>
         </div>
 
-        {/* Hover View Button */}
+        {/* Quick View Button */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 15 }}
           whileHover={{ opacity: 1, y: 0 }}
-          className="absolute bottom-3 right-3 z-30"
+          className="absolute bottom-4 right-4 z-30"
         >
-          <Button
-            size="sm"
-            className="bg-white/95 backdrop-blur-sm text-gray-900 hover:bg-white border border-gray-200 shadow-lg rounded-full gap-1 text-xs"
-            style={{ background: "white" }}
-          >
-            <PlayCircleIcon className="w-3 h-3" />
+          <div className="px-5 py-1.5 bg-white/95 backdrop-blur-sm text-gray-800 text-xs font-medium rounded-2xl shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] flex items-center gap-2 hover:bg-white transition-all">
+            <PlayCircleIcon className="w-4 h-4" />
             Quick View
-          </Button>
+          </div>
         </motion.div>
       </div>
 
-      {/* Card Body */}
-      <div className="p-6 relative z-10" style={{ background: "white" }}>
-        {/* Progress Bar */}
-        <div className="h-1.5 w-full bg-gray-100 rounded-full mb-4 overflow-hidden">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "75%" }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-full shadow-sm"
-          />
-        </div>
-
-        {/* Title and Description */}
-        <div className="mb-4">
-          <h3 className="text-xl font-bold text-gray-900 mb-3 line-clamp-2 leading-tight group-hover:text-gray-800 transition-colors">
+      {/* Card Body - Flexible to fill remaining space */}
+      <div className="p-7 flex flex-col flex-grow">
+        {/* Title & Short Description */}
+        <div className="mb-2 flex-shrink-0">
+          <h3 className="text-xl font-bold text-gray-800 mb-3 leading-tight line-clamp-2 group-hover:text-gray-900 transition-colors">
             {course.title}
           </h3>
-
-          <p className="text-gray-600 text-sm leading-relaxed line-clamp-2 group-hover:text-gray-700 transition-colors">
+          <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
             {course.short}
           </p>
         </div>
 
-        {/* Course Metadata */}
-        <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
-          <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
-            <AcademicCapIcon className="w-4 h-4 text-blue-600" />
+        {/* Metadata - Fixed height */}
+        <div className="flex gap-3 mb-2 flex-shrink-0">
+          <div className="flex items-center gap-2 bg-[#e0e5ec] px-4 py-2 rounded-2xl text-sm shadow-[inset_3px_3px_6px_#bebebe,inset_-3px_-3px_6px_#ffffff]">
+            <AcademicCapIcon className="w-4 h-4" style={{ color: accentColor }} />
             <span className="font-medium text-gray-700">{course.level}</span>
           </div>
-          <div className="flex items-center gap-2 bg-gray-50 px-3 py-1.5 rounded-lg">
-            <ClockIcon className="w-4 h-4 text-purple-600" />
+          
+          <div className="flex items-center gap-2 bg-[#e0e5ec] px-4 py-2 rounded-2xl text-sm shadow-[inset_3px_3px_6px_#bebebe,inset_-3px_-3px_6px_#ffffff]">
+            <ClockIcon className="w-4 h-4" style={{ color: accentColor }} />
             <span className="font-medium text-gray-700">{course.duration}</span>
           </div>
         </div>
 
-        {/* Expandable Details */}
-        <AnimatePresence>
-          {isExpanded && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="mb-4 space-y-3 overflow-hidden"
-            >
-              <div className="border-t border-gray-200 pt-4">
-                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2 text-gray-800">
-                  <CheckBadgeIcon className="w-4 h-4 text-blue-600" />
-                  Key Topics
-                </h4>
-                <div className="flex flex-wrap gap-2">
-                  {course.syllabus?.slice(0, 3).map((topic, index) => (
-                    <motion.span
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="px-3 py-1.5 bg-gray-50 text-gray-800 rounded-xl text-xs font-semibold border border-gray-200 shadow-sm"
-                    >
-                      {topic}
-                    </motion.span>
-                  ))}
+        {/* Expandable Syllabus - Will push content below */}
+        <div className="flex-grow">
+          <AnimatePresence>
+            {isExpanded && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="mb-2"
+              >
+                <div className="border-t border-gray-200/70 pt-5">
+                  <h4 className="text-sm font-semibold mb-4 flex items-center gap-2 text-gray-700">
+                    <CheckBadgeIcon className="w-4 h-4" style={{ color: accentColor }} />
+                    Key Topics
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {course.syllabus?.slice(0, 4).map((topic, index) => (
+                      <motion.span
+                        key={index}
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: index * 0.08 }}
+                        className="px-4 py-2 bg-white text-xs font-medium text-gray-700 rounded-2xl shadow-[2px_2px_5px_#bebebe,-2px_-2px_5px_#ffffff]"
+                      >
+                        {topic}
+                      </motion.span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
 
-        {/* Action Section */}
-        <div className="flex items-center justify-between pt-2">
-          {/* Price and Expand Button */}
+        {/* Footer Actions - Fixed at bottom */}
+        <div className="flex items-center justify-between pt-2 border-t border-gray-100 flex-shrink-0">
+          {/* Price */}
           <div className="flex items-center gap-3">
             <motion.span
-              className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-              whileHover={{ scale: 1.05 }}
+              className="text-2xl font-bold tracking-tight"
+              style={{ 
+                background: `linear-gradient(to right, ${accentColor}, ${accentDark})`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent"
+              }}
             >
               {course.fees}
             </motion.span>
+
+            {/* Expand Button */}
             <motion.button
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(59, 130, 246, 0.1)" }}
+              whileHover={{ scale: 1.15 }}
               whileTap={{ scale: 0.9 }}
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="p-2 rounded-xl bg-gray-100 hover:bg-blue-100 transition-colors group/button"
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsExpanded(!isExpanded);
+              }}
+              className="p-2 rounded-2xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
             >
               <ChevronDownIcon
-                className={`w-4 h-4 text-gray-600 group-hover/button:text-blue-600 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""
-                  }`}
+                className={`w-4 h-4 text-gray-600 transition-transform duration-300 ${isExpanded ? "rotate-180" : ""}`}
               />
             </motion.button>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex items-center gap-2">
+          <div className="flex gap-3">
+            {/* Preview Button - Raised */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link to={`/courses/${course.id}`}>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="gap-2 text-gray-600 hover:text-gray-900 border-gray-300 hover:border-gray-400 bg-white rounded-xl font-medium"
-                  style={{ background: "white" }}
-                >
-                  <PlayCircleIcon className="w-4 h-4" />
+                <button className="px-2 py-3 text-sm font-medium bg-[#e0e5ec] text-gray-700 rounded-2xl shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] flex items-center gap-2 hover:text-gray-900 transition-all">
+                  <PlayCircleIcon className="w- h-4" />
                   Preview
-                </Button>
+                </button>
               </Link>
             </motion.div>
 
+            {/* Enroll Button - Accent Color */}
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link to={`/enroll/${course.id}`}>
-                <Button
-                  className="bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg hover:shadow-xl hover:from-blue-700 hover:to-purple-700 transition-all duration-300 font-semibold gap-2 rounded-xl"
+                <button 
+                  className="px-3 py-3 text-sm font-semibold text-white rounded-2xl flex items-center gap-2 shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
+                  style={{ 
+                    background: `linear-gradient(135deg, ${accentColor}, ${accentDark})` 
+                  }}
                 >
                   <SparklesIcon className="w-4 h-4" />
-                  Enroll
-                </Button>
+                  Enroll Now
+                </button>
               </Link>
             </motion.div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Hover Border Effect */}
+      {/* Subtle Hover Glow */}
       <motion.div
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        className="absolute inset-0 border-2 border-blue-200 rounded-2xl pointer-events-none shadow-2xl"
+        animate={{ opacity: isHovered ? 0.6 : 0 }}
+        className="absolute inset-0 rounded-3xl pointer-events-none"
+        style={{ 
+          boxShadow: `0 0 0 3px ${accentColor}30` 
+        }}
       />
     </motion.article>
   );

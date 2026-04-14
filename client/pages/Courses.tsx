@@ -32,69 +32,73 @@ export default function Courses() {
     });
   }, [query, category, level]);
 
-  // Neumorphism styles
-  const raisedInput = "bg-[#e0e5ec] border-none shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] transition-all rounded-3xl px-5 py-3 text-gray-800 placeholder:text-gray-500 focus:outline-none";
-
-  const raisedButton = "bg-[#e0e5ec] shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] hover:shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] transition-all rounded-3xl px-6 py-3 font-medium text-gray-700 active:scale-95";
-
   return (
     <Layout>
-      <section className="min-h-screen bg-[#e0e5ec] py-12">
-        <div className="container">
+      <section className="min-h-screen bg-[#e0e5ec] py-12 md:py-20">
+        <div className="max-w-6xl mx-auto px-6">
           {/* Header */}
           <div className="mx-auto max-w-2xl text-center mb-12">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6"
+              viewport={{ once: true }}
+              className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6 mx-auto"
             >
-              <span className="text-sm font-semibold" style={{ color: "#6b21a8" }}>Explore Our Programs</span>
+              <span className="text-sm font-semibold" style={{ color: "#6b21a8" }}>
+                Explore Our Programs
+              </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800 tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-800 tracking-tight">
               Our Popular Courses
             </h1>
-            <p className="mt-4 text-lg text-gray-600 max-w-xl mx-auto">
+            <p className="mt-4 text-lg text-gray-600">
               Interactive, job-ready programs with hands-on projects and mentor support.
             </p>
           </div>
 
-          {/* Filters */}
-          <div className="max-w-4xl mx-auto mb-12">
-            <div className="bg-[#e0e5ec] rounded-3xl p-8 shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff]">
-              <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div className="flex flex-col sm:flex-row gap-4 flex-1">
+          {/* Filters Section - Neumorphic Card */}
+          <div className="max-w-4xl mx-auto mb-16">
+            <div className="bg-[#e0e5ec] rounded-3xl p-6 md:p-8 shadow-[6px_6px_14px_#bebebe,-6px_-6px_14px_#ffffff]">
+              <div className="flex flex-col gap-5 md:flex-row md:items-end">
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {/* Search Input */}
-                  <input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search courses..."
-                    className={`${raisedInput} w-full md:w-80`}
-                  />
+                  <div>
+                    <input
+                      value={query}
+                      onChange={(e) => setQuery(e.target.value)}
+                      placeholder="Search courses..."
+                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 placeholder:text-gray-500 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
+                    />
+                  </div>
 
-                  {/* Category Select */}
-                  <select
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                    className={`${raisedInput} w-full md:w-52`}
-                  >
-                    <option value="">All Categories</option>
-                    {categories.map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
+                  {/* Category Filter */}
+                  <div>
+                    <select
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
+                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
+                    >
+                      <option value="">All Categories</option>
+                      {categories.map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
 
-                  {/* Level Select */}
-                  <select
-                    value={level}
-                    onChange={(e) => setLevel(e.target.value)}
-                    className={`${raisedInput} w-full md:w-52`}
-                  >
-                    <option value="">All Levels</option>
-                    {levels.map((l) => (
-                      <option key={l} value={l}>{l}</option>
-                    ))}
-                  </select>
+                  {/* Level Filter */}
+                  <div>
+                    <select
+                      value={level}
+                      onChange={(e) => setLevel(e.target.value)}
+                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
+                    >
+                      <option value="">All Levels</option>
+                      {levels.map((l) => (
+                        <option key={l} value={l}>{l}</option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
 
                 {/* Clear Filters Button */}
@@ -104,7 +108,7 @@ export default function Courses() {
                     setCategory("");
                     setLevel("");
                   }}
-                  className={`${raisedButton} whitespace-nowrap text-sm font-semibold hover:text-gray-800`}
+                  className="w-full md:w-auto px-8 py-3.5 rounded-3xl font-semibold text-gray-700 bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
                 >
                   Clear Filters
                 </button>
@@ -117,28 +121,28 @@ export default function Courses() {
             variants={stagger}
             initial="hidden"
             whileInView="show"
-            viewport={{ once: true, margin: "-100px" }}
-            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto"
+            viewport={{ once: true, margin: "-80px" }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center"
           >
             {filtered.map((c, i) => (
               <motion.div
                 key={c.id}
-                variants={fadeInUp(i * 0.04)}
-                className="h-full"
+                variants={fadeInUp(i * 0.05)}
+                className="w-full max-w-sm"
               >
                 <CourseCard course={c} />
               </motion.div>
             ))}
           </motion.div>
 
-          {/* No Results */}
+          {/* No Results State */}
           {filtered.length === 0 && (
-            <div className="mt-16 text-center">
-              <div className="mx-auto w-20 h-20 rounded-full bg-[#e0e5ec] shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] flex items-center justify-center mb-6">
-                <span className="text-4xl">🔍</span>
+            <div className="mt-20 text-center">
+              <div className="mx-auto mb-6 w-24 h-24 rounded-3xl bg-[#e0e5ec] shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] flex items-center justify-center">
+                <span className="text-5xl opacity-60">🔍</span>
               </div>
-              <p className="text-xl text-gray-500">No courses match your filters.</p>
-              <p className="text-sm text-gray-400 mt-2">Try adjusting your search or filters</p>
+              <h3 className="text-2xl font-medium text-gray-700 mb-2">No courses found</h3>
+              <p className="text-gray-500">Try adjusting your search term or filters</p>
             </div>
           )}
         </div>
