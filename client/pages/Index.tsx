@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, stagger } from "@/lib/animations";
 import CoursesSection from "@/components/site/CoursesSection";
+// import OverseasDropdown from "@/components/OverseasDropdown";
 import {
   SparklesIcon,
   PlayCircleIcon,
@@ -22,6 +23,7 @@ import {
   StarIcon
 } from "@heroicons/react/24/outline";
 import PosterTemplates from "@/components/site/PosterTemplates";
+import TestimonialsSection from "@/components/site/TestimonialsSection";
 
 export default function Index() {
   const [hoveredCourse, setHoveredCourse] = useState<number | null>(null);
@@ -170,7 +172,7 @@ export default function Index() {
         <Stats />
 
         {/* ==================== ABOUT US ==================== */}
-        <section id="about" className="container py-20">
+        <section id="about" className="container py-20 ">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -186,12 +188,12 @@ export default function Index() {
                 <span className="font-semibold text-amber-700">About Skill Training Center</span>
               </motion.div>
 
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+              <h2 className="text-3xl md:text-5xl font-bold text-gray-800 leading-tight">
                 Innovating Education with AI
               </h2>
 
-              <div className="space-y-8 text-gray-600 leading-relaxed">
-                <p className="text-xl font-semibold text-gray-800">
+              <div className="space-y-1 text-gray-600 leading-relaxed">
+                <p className="text-lg font-semibold text-gray-800">
                   Where innovation meets excellence in the realm of IT solutions and education.
                 </p>
                 <p>
@@ -200,9 +202,10 @@ export default function Index() {
                 </p>
               </div>
 
-              <div className="space-y-6">
+              {/* <div className="space-y-6"> */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
-                  { title: "🎓 Education", content: "Education is key to personal and professional growth..." },
+                  { title: "🎓 Education", content: "Education is key to personal and professional growth" },
                   { title: "💡 Belief", content: "We believe in nurturing talent and fostering careers..." },
                   { title: "🚀 Solutions", content: "Our tailored solutions ensure that your projects..." }
                 ].map((item, idx) => (
@@ -226,7 +229,7 @@ export default function Index() {
               whileInView={{ opacity: 1, x: 0 }}
               className="relative"
             >
-              <div className={`rounded-3xl p-3 bg-[#e0e5ec] ${raisedShadow}`}>
+              <div className={`rounded-3xl p-2 bg-[#e0e5ec] ${raisedShadow}`}>
                 <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-white">
                   <video
                     src="/v1.mp4"
@@ -279,142 +282,57 @@ export default function Index() {
         </section>
 
         {/* ==================== TESTIMONIALS ==================== */}
-        <section id="testimonials" className="py-20 bg-[#e0e5ec]">
-          <div className="container">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="mx-auto max-w-4xl text-center mb-16"
-            >
-              <motion.div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6">
-                <ChatBubbleLeftRightIcon className="w-5 h-5 text-emerald-600" />
-                <span className="font-semibold text-emerald-700">Success Stories</span>
-              </motion.div>
-
-              <h2 className="text-5xl md:text-6xl font-bold text-gray-800">What Our Students Say</h2>
-              <p className="mt-6 text-xl text-gray-600">Real stories from our alumni who transformed their careers</p>
-            </motion.div>
-
-            <div className="max-w-6xl mx-auto">
-              <div className={`rounded-3xl overflow-hidden bg-[#e0e5ec] ${raisedShadow}`}>
-                <div className="grid lg:grid-cols-2">
-                  {/* Testimonial Content */}
-                  <div className="p-10 md:p-16">
-                    <AnimatePresence mode="wait">
-                      <motion.div
-                        key={activeTestimonial}
-                        initial={{ opacity: 0, x: 40 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -40 }}
-                        className="h-full flex flex-col"
-                      >
-                        <div className="flex gap-1 mb-8">
-                          {[...Array(testimonials[activeTestimonial].rating)].map((_, i) => (
-                            <StarIcon key={i} className="w-6 h-6 fill-amber-400 text-amber-400" />
-                          ))}
-                        </div>
-
-                        <blockquote className="text-2xl leading-relaxed text-gray-700 font-light italic mb-10">
-                          “{testimonials[activeTestimonial].quote}”
-                        </blockquote>
-
-                        <div className="flex items-center gap-5 mt-auto">
-                          <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-3xl font-bold shadow-inner">
-                            {testimonials[activeTestimonial].author.split(' ').map(n => n[0]).join('')}
-                          </div>
-                          <div>
-                            <div className="font-bold text-xl text-gray-800">
-                              {testimonials[activeTestimonial].author}
-                            </div>
-                            <div className="text-gray-500">
-                              {testimonials[activeTestimonial].role} at {testimonials[activeTestimonial].company}
-                            </div>
-                            <div className="text-violet-600 font-medium text-sm mt-1">
-                              {testimonials[activeTestimonial].course}
-                            </div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </AnimatePresence>
-                  </div>
-
-                  {/* Right Side Visual */}
-                  <div className="bg-[#d8dde6] p-10 md:p-16 flex items-center justify-center">
-                    <motion.div
-                      key={activeTestimonial}
-                      initial={{ scale: 0.85, opacity: 0 }}
-                      animate={{ scale: 1, opacity: 1 }}
-                      className="text-center"
-                    >
-                      <div className="w-56 h-56 mx-auto mb-6 rounded-3xl bg-gradient-to-br from-violet-500 to-purple-600 flex items-center justify-center text-white text-7xl font-bold shadow-[inset_6px_6px_12px_rgba(0,0,0,0.2)]">
-                        {testimonials[activeTestimonial].author.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <p className="text-gray-600">Alumni Success Story</p>
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Controls */}
-              <div className="flex items-center justify-between mt-10 px-4">
-                <div className="flex gap-3">
-                  {testimonials.map((_, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => goToTestimonial(idx)}
-                      className={`h-3 rounded-full transition-all ${activeTestimonial === idx 
-                        ? "bg-violet-600 w-10" 
-                        : "bg-gray-300 hover:bg-gray-400 w-3"}`}
-                    />
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.92 }}
-                    onClick={prevTestimonial}
-                    className={`p-4 rounded-2xl bg-[#e0e5ec] ${raisedShadow} active:${insetShadow}`}
-                  >
-                    <ChevronLeftIcon className="w-6 h-6" />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.92 }}
-                    onClick={nextTestimonial}
-                    className={`p-4 rounded-2xl bg-[#e0e5ec] ${raisedShadow} active:${insetShadow}`}
-                  >
-                    <ChevronRightIcon className="w-6 h-6" />
-                  </motion.button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <TestimonialsSection 
+          testimonials={testimonials}
+        />
+        
 
         {/* Contact Section */}
-        <section id="contact" className="container py-20 bg-[#e0e5ec]">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="mx-auto max-w-4xl text-center mb-16"
-          >
-            <motion.div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6">
-              <UserGroupIcon className="w-5 h-5 text-sky-600" />
-              <span className="font-semibold text-sky-700">Get In Touch</span>
-            </motion.div>
+        <section id="contact" className="py-20">
+          <div className="container mx-auto px-6">
+            
+            {/* Main Neumorphic Container */}
+            <div className={`max-w-5xl mx-auto rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-8 md:p-12`}>
+              
+              {/* Header */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                className="mx-auto max-w-3xl text-center mb-16"
+              >
+                {/* Neumorphic Badge */}
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="inline-flex items-center gap-3 px-7 py-3.5 rounded-3xl bg-[#e0e5ec] shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] mb-8"
+                >
+                  <UserGroupIcon className="w-6 h-6 text-sky-600" />
+                  <span className="font-semibold text-sky-700 tracking-wide">Get In Touch</span>
+                </motion.div>
 
-            <h2 className="text-5xl md:text-6xl font-bold text-gray-800">Start Your Journey Today</h2>
-            <p className="mt-6 text-xl text-gray-600">Reach out to us for more information about our services and training programs.</p>
-          </motion.div>
+                {/* Heading */}
+                <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight tracking-tight">
+                  Start Your Journey Today
+                </h2>
+                
+                <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                  Reach out to us for more information about our services and training programs. 
+                  Our team is ready to help you take the next step.
+                </p>
+              </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            className="mt-10"
-          >
-            <ContactForm />
-          </motion.div>
+              {/* Form Container - Neumorphic Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className={`rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-8 md:p-10 lg:p-12`}
+              >
+                <ContactForm />
+              </motion.div>
+
+            </div>
+          </div>
         </section>
       </div>
     </Layout>

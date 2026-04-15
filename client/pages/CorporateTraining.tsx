@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/site/Layout";
-import GallerySection from "../components/site/GallerySection"
+import GallerySection from "../components/site/GallerySection";
 import {
   SparklesIcon,
   BuildingOfficeIcon,
@@ -11,13 +11,18 @@ import {
   AcademicCapIcon,
   TrophyIcon,
   CheckBadgeIcon,
-  PlayCircleIcon,
-  ArrowRightIcon,
   PhoneIcon,
-  EnvelopeIcon
-} from "@heroicons/react/24/outline";
+  EnvelopeIcon,
+  ArrowRightIcon,
+} from "@heroicons/react/24/solid";
 
-export default function CorporateTraining() {
+export default function CorporateTraining({ 
+  raisedShadow, 
+  insetShadow 
+}: { 
+  raisedShadow?: string; 
+  insetShadow?: string;
+}) {
   const [form, setForm] = useState({
     company: "",
     contact: "",
@@ -37,7 +42,6 @@ export default function CorporateTraining() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Format form data into a WhatsApp message
     const whatsappMessage = `
 🏢 Corporate Training Enquiry
 
@@ -48,31 +52,25 @@ export default function CorporateTraining() {
 👥 No. of Employees: ${form.employees}
 📝 Details: ${form.message}
 
-🤖 Sent via AI Learning Platform
+🤖 Sent via Skill Training Center
     `.trim();
 
-    // WhatsApp Click to Chat URL
     const phoneNumber = "919399345989";
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    // Simulate loading for better UX
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    // Open WhatsApp in a new tab/window
+    await new Promise(resolve => setTimeout(resolve, 1200));
     window.open(whatsappUrl, "_blank");
 
-    // Reset form after opening
     setForm({ company: "", contact: "", email: "", phone: "", employees: "", message: "" });
     setIsSubmitting(false);
   }
 
-  // Features data
   const features = [
     {
       icon: BuildingOfficeIcon,
       title: "Customized Curriculum",
-      description: "Tailored learning paths aligned with your business objectives and technology stack",
+      description: "Tailored learning paths aligned with your business objectives",
       benefits: ["Industry-specific content", "Real-world projects", "Custom assessments"]
     },
     {
@@ -84,26 +82,24 @@ export default function CorporateTraining() {
     {
       icon: ChartBarIcon,
       title: "Performance Analytics",
-      description: "Comprehensive tracking and reporting on team progress and skill development",
+      description: "Comprehensive tracking and reporting on team progress",
       benefits: ["Skill gap analysis", "Progress reports", "ROI measurement"]
     },
     {
       icon: ClockIcon,
       title: "Flexible Scheduling",
-      description: "On-site, remote, or hybrid delivery options to suit your team's workflow",
+      description: "On-site, remote, or hybrid delivery options",
       benefits: ["24/7 access", "Recorded sessions", "Multiple time zones"]
     }
   ];
 
-  // Success metrics
   const metrics = [
     { value: "200+", label: "Corporate Clients", icon: BuildingOfficeIcon },
     { value: "15,000+", label: "Professionals Trained", icon: UserGroupIcon },
-    { value: "95%", label: "Satisfaction Rate", icon: ChartBarIcon },
-    { value: "50%", label: "Productivity Boost", icon: TrophyIcon }
+    { value: "95%", label: "Satisfaction Rate", icon: TrophyIcon },
+    { value: "50%", label: "Productivity Boost", icon: ChartBarIcon }
   ];
 
-  // Training domains
   const domains = [
     {
       title: "AI & Machine Learning",
@@ -127,136 +123,100 @@ export default function CorporateTraining() {
     }
   ];
 
-  // Get the current active feature icon component
   const ActiveFeatureIcon = features[activeFeature].icon;
 
   return (
     <Layout>
-      {/* Animated Background Elements */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-primary/20 to-purple-600/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-blue-600/20 to-primary/20 rounded-full blur-3xl"
-        />
-      </div>
-
-      <section className="container py-16 relative">
+      <div className="bg-[#e0e5ec] min-h-screen pb-20">
+        
         {/* Hero Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mx-auto max-w-4xl text-center mb-16"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6"
-          >
-            <SparklesIcon className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Enterprise AI Training</span>
-          </motion.div>
+        <section className="pt-16 pb-12">
+          <div className="container mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              className="mx-auto max-w-4xl text-center"
+            >
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6"
+              >
+                <SparklesIcon className="w-6 h-6 text-violet-600" />
+                <span className="font-semibold text-violet-700">Enterprise Training</span>
+              </motion.div>
 
-          <h1 className="text-4xl md:text-6xl font-extrabold bg-gradient-to-r from-foreground via-foreground/90 to-foreground/80 bg-clip-text text-transparent">
-            Corporate Training
-          </h1>
+              <h1 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight">
+                Professional Collaboration
+              </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed"
-          >
-            Transform your workforce with customized training programs,
-            <span className="bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent font-semibold"> AI-powered learning</span>,
-            and enterprise-grade skill development.
-          </motion.p>
-        </motion.div>
+              <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+                Transform your workforce with customized AI-powered training programs, 
+                expert instructors, and measurable business outcomes.
+              </p>
+            </motion.div>
+          </div>
+        </section>
 
-        {/* Metrics Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="mb-20"
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+        {/* Metrics - Neumorphic Cards */}
+        <section className="container mx-auto px-6 pb-20">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {metrics.map((metric, index) => (
               <motion.div
-                key={metric.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.8 + index * 0.1 }}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="text-center p-6 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm"
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -8 }}
+                className={`rounded-3xl p-8 bg-[#e0e5ec] ${raisedShadow} text-center transition-all duration-300`}
               >
-                <metric.icon className="w-8 h-8 text-primary mx-auto mb-3" />
-                <div className="text-2xl font-bold bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-                  {metric.value}
+                <div className="w-14 h-14 mx-auto mb-5 rounded-2xl bg-[#e0e5ec] shadow-inner flex items-center justify-center">
+                  <metric.icon className="w-8 h-8 text-violet-600" />
                 </div>
-                <div className="text-sm text-muted-foreground mt-1">{metric.label}</div>
+                <div className="text-4xl font-bold text-gray-800 mb-2">{metric.value}</div>
+                <div className="text-gray-600 font-medium">{metric.label}</div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </section>
 
-        {/* Features Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent mb-4">
+        {/* Why Choose Us - Features */}
+        <section className="container mx-auto px-6 pb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-800 mb-4">
               Why Choose Our Corporate Training?
             </h2>
-            <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Comprehensive solutions designed for enterprise success and team growth
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            {/* Feature Cards */}
-            <div className="space-y-4">
+          <div className="grid lg:grid-cols-2 gap-10 items-center max-w-6xl mx-auto">
+            
+            {/* Feature List */}
+            <div className="space-y-6">
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 1 + index * 0.1 }}
-                  whileHover={{ scale: 1.02 }}
                   onClick={() => setActiveFeature(index)}
-                  className={`p-6 rounded-2xl border-2 cursor-pointer transition-all duration-300 ${activeFeature === index
-                    ? "bg-gradient-to-br from-primary/10 to-purple-600/10 border-primary/50 shadow-lg shadow-primary/10"
-                    : "bg-background/50 border-border/30 hover:border-primary/30"
+                  whileHover={{ scale: 1.02 }}
+                  className={`rounded-3xl p-8 cursor-pointer transition-all duration-300 bg-[#e0e5ec] 
+                    ${activeFeature === index 
+                      ? `${insetShadow} border-2 border-violet-300` 
+                      : raisedShadow
                     }`}
                 >
-                  <div className="flex items-start gap-4">
-                    <div className={`p-3 rounded-xl ${activeFeature === index
-                      ? "bg-primary text-primary-foreground"
-                      : "bg-primary/10 text-primary"
-                      }`}>
-                      <feature.icon className="w-6 h-6" />
+                  <div className="flex gap-5">
+                    <div className={`w-12 h-12 rounded-2xl flex-shrink-0 flex items-center justify-center shadow-inner
+                      ${activeFeature === index ? "bg-violet-100" : "bg-[#e0e5ec]"}`}>
+                      <feature.icon className={`w-7 h-7 ${activeFeature === index ? "text-violet-600" : "text-gray-600"}`} />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="font-bold text-lg mb-2">{feature.title}</h3>
-                      <p className="text-foreground/70 text-sm mb-3">{feature.description}</p>
+                    <div>
+                      <h3 className="font-bold text-2xl text-gray-800 mb-3">{feature.title}</h3>
+                      <p className="text-gray-600 mb-5">{feature.description}</p>
                       <div className="flex flex-wrap gap-2">
                         {feature.benefits.map((benefit, i) => (
-                          <span
-                            key={i}
-                            className="px-2 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium"
-                          >
+                          <span key={i} className="px-4 py-1.5 bg-white text-gray-700 text-sm rounded-2xl shadow-inner">
                             {benefit}
                           </span>
                         ))}
@@ -267,288 +227,208 @@ export default function CorporateTraining() {
               ))}
             </div>
 
-            {/* Feature Visualization */}
+            {/* Active Feature Highlight */}
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.2 }}
-              className="relative"
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className={`rounded-3xl p-10 bg-[#e0e5ec] ${raisedShadow} h-full`}
             >
-              <div className="rounded-2xl bg-gradient-to-br from-primary/5 to-purple-600/5 border border-border/30 p-8 backdrop-blur-sm">
-                <div className="text-center mb-6">
-                  <ActiveFeatureIcon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <h3 className="text-2xl font-bold mb-2">{features[activeFeature].title}</h3>
-                  <p className="text-foreground/70">{features[activeFeature].description}</p>
+              <div className="text-center mb-8">
+                <div className="w-20 h-20 mx-auto mb-6 rounded-3xl bg-[#e0e5ec] shadow-inner flex items-center justify-center">
+                  <ActiveFeatureIcon className="w-12 h-12 text-violet-600" />
                 </div>
+                <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                  {features[activeFeature].title}
+                </h3>
+                <p className="text-gray-600 text-lg">{features[activeFeature].description}</p>
+              </div>
 
-                {/* Animated Progress Visualization */}
-                <div className="space-y-4">
-                  {features[activeFeature].benefits.map((benefit, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, width: 0 }}
-                      animate={{ opacity: 1, width: "100%" }}
-                      transition={{ delay: 1.4 + index * 0.2 }}
-                      className="flex items-center gap-3"
-                    >
-                      <CheckBadgeIcon className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">{benefit}</div>
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${80 + index * 5}%` }}
-                          transition={{ delay: 1.6 + index * 0.2, duration: 1 }}
-                          className="h-2 bg-gradient-to-r from-primary to-purple-600 rounded-full"
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
+              <div className="space-y-6">
+                {features[activeFeature].benefits.map((benefit, i) => (
+                  <div key={i} className="flex items-start gap-4">
+                    <CheckBadgeIcon className="w-6 h-6 text-emerald-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-gray-700">{benefit}</div>
+                  </div>
+                ))}
               </div>
             </motion.div>
           </div>
-        </motion.div>
+        </section>
 
         {/* Training Domains */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.4 }}
-          className="mb-20"
-        >
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent mb-4">
-              Our Training Domains
-            </h2>
-            <p className="text-xl text-foreground/70 max-w-2xl mx-auto">
-              Comprehensive coverage of modern technologies and methodologies
-            </p>
+        <section className="container mx-auto px-6 pb-20">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-800">Our Training Domains</h2>
+            <p className="mt-4 text-xl text-gray-600">Comprehensive coverage of modern technologies</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {domains.map((domain, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.6 + index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="p-6 rounded-2xl bg-background/50 border border-border/30 backdrop-blur-sm"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -6 }}
+                className={`rounded-3xl p-9 bg-[#e0e5ec] ${raisedShadow}`}
               >
-                <h3 className="font-bold text-xl mb-3">{domain.title}</h3>
-                <p className="text-foreground/70 mb-4">{domain.description}</p>
-                <div className="flex flex-wrap gap-2">
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">{domain.title}</h3>
+                <p className="text-gray-600 mb-8">{domain.description}</p>
+                <div className="flex flex-wrap gap-3">
                   {domain.technologies.map((tech, i) => (
-                    <motion.span
-                      key={i}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 1.8 + i * 0.1 }}
-                      className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium"
-                    >
+                    <span key={i} className="px-5 py-2 bg-white text-gray-700 rounded-2xl text-sm shadow-inner">
                       {tech}
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </section>
 
-        {/* Contact Form Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.8 }}
-          className="grid lg:grid-cols-2 gap-12 items-start"
-        >
-          {/* Form Section */}
-          <div className="rounded-2xl bg-gradient-to-br from-primary/5 to-purple-600/5 border border-border/30 p-8 backdrop-blur-sm">
-            <div className="text-center mb-8">
-              <h2 className="text-3xl font-bold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text text-transparent mb-2">
-                Request a Corporate Program
-              </h2>
-              <p className="text-foreground/70">
-                Get in touch to discuss your training needs and get a customized proposal
-              </p>
-            </div>
+        {/* Enquiry Form */}
+        <section className="container mx-auto px-6">
+          <div className={`max-w-5xl mx-auto rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-10 md:p-16`}>
+            <div className="grid lg:grid-cols-2 gap-16">
+              
+              {/* Form */}
+              <div>
+                <h2 className="text-4xl font-bold text-gray-800 mb-3">Request Corporate Program</h2>
+                <p className="text-gray-600 mb-10">
+                  Get a customized training proposal tailored to your organization's needs.
+                </p>
 
-            <form onSubmit={submit} className="space-y-4">
-              <div className="grid md:grid-cols-2 gap-4">
-                <motion.div whileHover={{ scale: 1.02 }}>
-                  <input
-                    name="company"
-                    value={form.company}
-                    onChange={handleChange}
-                    placeholder="Company name"
-                    className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    required
-                  />
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }}>
-                  <input
-                    name="contact"
-                    value={form.contact}
-                    onChange={handleChange}
-                    placeholder="Contact person"
-                    className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    required
-                  />
-                </motion.div>
-              </div>
-
-              <div className="grid md:grid-cols-2 gap-4">
-                <motion.div whileHover={{ scale: 1.02 }}>
-                  <input
-                    name="email"
-                    type="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    placeholder="Email address"
-                    className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    required
-                  />
-                </motion.div>
-                <motion.div whileHover={{ scale: 1.02 }}>
-                  <input
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    placeholder="Phone number"
-                    className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                    required
-                  />
-                </motion.div>
-              </div>
-
-              <motion.div whileHover={{ scale: 1.02 }}>
-                <input
-                  name="employees"
-                  value={form.employees}
-                  onChange={handleChange}
-                  placeholder="Number of employees to train"
-                  className="w-full px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300"
-                  required
-                />
-              </motion.div>
-
-              <motion.div whileHover={{ scale: 1.02 }}>
-                <textarea
-                  name="message"
-                  value={form.message}
-                  onChange={handleChange}
-                  placeholder="Tell us about your training requirements, goals, and timeline..."
-                  className="w-full min-h-[120px] px-4 py-3 rounded-xl bg-background/50 border border-border/30 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-300 resize-none"
-                  required
-                />
-              </motion.div>
-
-              <div className="flex flex-col sm:flex-row gap-3 pt-4">
-                <motion.button
-                  type="submit"
-                  disabled={isSubmitting}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex-1 flex items-center justify-center gap-2 px-6 py-4 rounded-xl bg-gradient-to-r from-primary to-purple-600 text-white font-bold shadow-lg shadow-primary/25 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
-                >
-                  {isSubmitting ? (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                <form onSubmit={submit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-2">Company Name</label>
+                      <input
+                        name="company"
+                        value={form.company}
+                        onChange={handleChange}
+                        className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400`}
+                        placeholder="Your Company"
+                        required
                       />
-                      Sending...
-                    </>
-                  ) : (
-                    <>
-                      <PhoneIcon className="w-5 h-5" />
-                      Send via WhatsApp
-                    </>
-                  )}
-                </motion.button>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-2">Contact Person</label>
+                      <input
+                        name="contact"
+                        value={form.contact}
+                        onChange={handleChange}
+                        className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400`}
+                        placeholder="Full Name"
+                        required
+                      />
+                    </div>
+                  </div>
 
-                <motion.button
-                  type="button"
-                  onClick={() => setForm({ company: "", contact: "", email: "", phone: "", employees: "", message: "" })}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-6 py-4 rounded-xl bg-background/50 border border-border/30 hover:border-primary/30 transition-all duration-300"
-                >
-                  Reset Form
-                </motion.button>
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-2">Email Address</label>
+                      <input
+                        name="email"
+                        type="email"
+                        value={form.email}
+                        onChange={handleChange}
+                        className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400`}
+                        placeholder="company@email.com"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-600 mb-2">Phone Number</label>
+                      <input
+                        name="phone"
+                        value={form.phone}
+                        onChange={handleChange}
+                        className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400`}
+                        placeholder="+91 98765 43210"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">Number of Employees to Train</label>
+                    <input
+                      name="employees"
+                      value={form.employees}
+                      onChange={handleChange}
+                      className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400`}
+                      placeholder="e.g. 25"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">Training Requirements</label>
+                    <textarea
+                      name="message"
+                      value={form.message}
+                      onChange={handleChange}
+                      rows={5}
+                      className={`w-full px-6 py-4 rounded-3xl bg-[#e0e5ec] ${insetShadow} focus:outline-none focus:ring-2 focus:ring-violet-400 resize-y`}
+                      placeholder="Tell us about your goals, timeline, and specific training needs..."
+                      required
+                    />
+                  </div>
+
+                  <motion.button
+                    type="submit"
+                    disabled={isSubmitting}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`w-full py-4 rounded-3xl font-semibold text-lg flex items-center justify-center gap-3 bg-[#e0e5ec] ${raisedShadow} hover:shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] active:${insetShadow}`}
+                  >
+                    {isSubmitting ? "Preparing WhatsApp Message..." : "Send Enquiry via WhatsApp"}
+                    <ArrowRightIcon className="w-5 h-5" />
+                  </motion.button>
+                </form>
               </div>
-            </form>
-          </div>
 
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 2 }}
-            className="space-y-6"
-          >
-            <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-purple-600/10 border border-primary/20 p-8 backdrop-blur-sm">
-              <h3 className="text-2xl font-bold mb-4">Get Started Today</h3>
-              <p className="text-foreground/70 mb-6">
-                Our corporate training experts are ready to design a customized program that drives real business results.
-              </p>
-
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <PhoneIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Call Us</div>
-                    <div className="text-foreground/70">+91 93993 45989</div>
+              {/* Contact Info */}
+              <div className="space-y-8 pt-8 lg:pt-12">
+                <div className={`rounded-3xl p-8 bg-[#e0e5ec] ${raisedShadow}`}>
+                  <h3 className="text-2xl font-bold mb-6">Ready to Upskill Your Team?</h3>
+                  <div className="space-y-6">
+                    <div className="flex gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-[#e0e5ec] shadow-inner flex items-center justify-center">
+                        <PhoneIcon className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <div className="font-semibold">Call Us Directly</div>
+                        <div className="text-gray-600">+91 93993 45989</div>
+                      </div>
+                    </div>
+                    <div className="flex gap-4">
+                      <div className="w-12 h-12 rounded-2xl bg-[#e0e5ec] shadow-inner flex items-center justify-center">
+                        <EnvelopeIcon className="w-6 h-6 text-emerald-600" />
+                      </div>
+                      <div>
+                        <div className="font-semibold">Email Us</div>
+                        <div className="text-gray-600">corporate@skilltrainingcenter.com</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <EnvelopeIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Email Us</div>
-                    <div className="text-foreground/70">corporate@ailearning.com</div>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-primary/10 rounded-lg">
-                    <ClockIcon className="w-5 h-5 text-primary" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">Response Time</div>
-                    <div className="text-foreground/70">Within 24 hours</div>
-                  </div>
+                <div className={`rounded-3xl p-8 bg-[#e0e5ec] ${raisedShadow}`}>
+                  <p className="text-gray-600">
+                    Our training consultants will get back to you within 24 hours with a customized proposal.
+                  </p>
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
-            {/* Quick Action Card */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              className="rounded-2xl bg-background/50 border border-border/30 p-6 backdrop-blur-sm"
-            >
-              <h4 className="font-bold text-lg mb-3">Need Immediate Assistance?</h4>
-              <p className="text-foreground/70 text-sm mb-4">
-                Schedule a quick call with our training consultant to discuss your requirements.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-primary/10 text-primary font-semibold hover:bg-primary/20 transition-all duration-300"
-              >
-                <PlayCircleIcon className="w-4 h-4" />
-                Schedule Discovery Call
-              </motion.button>
-            </motion.div>
-          </motion.div>
-        </motion.div>
-        <GallerySection/>
-      </section>
+        {/* Gallery */}
+        <div className="max-w-5xl mx-auto">
+          <GallerySection raisedShadow={raisedShadow} insetShadow={insetShadow} />
+        </div>
+      </div>
     </Layout>
   );
 }

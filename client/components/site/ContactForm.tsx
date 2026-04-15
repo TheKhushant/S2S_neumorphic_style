@@ -1,9 +1,17 @@
-
-import { Link } from "react-router-dom";
 import { useState } from "react";
+import { motion } from "framer-motion";
+import { PaperAirplaneIcon, MapPinIcon } from "@heroicons/react/24/solid";
 
-export default function ContactForm() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+export default function ContactForm({ raisedShadow, insetShadow }: { 
+  raisedShadow?: string; 
+  insetShadow?: string;
+}) {
+  const [form, setForm] = useState({ 
+    name: "", 
+    email: "", 
+    phone: "", 
+    message: "" 
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
@@ -19,82 +27,164 @@ export default function ContactForm() {
 
     setIsSubmitting(true);
 
-    // Construct WhatsApp message
     const whatsappNumber = "919399345989";
     const message = `New Contact Form Submission:\n\nName: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nMessage: ${form.message}`;
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
 
-    // Open WhatsApp in new tab
     window.open(whatsappUrl, "_blank");
 
-    // Reset form
     setForm({ name: "", email: "", phone: "", message: "" });
-
     setIsSubmitting(false);
     alert("Your message has been prepared in WhatsApp. Please send it to confirm.");
   }
 
   return (
-    <section id="contact" className="bg-white py-16 w-full">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid gap-10 md:grid-cols-2">
-        <div className="space-y-4">
-          <h2 className="text-3xl font-extrabold tracking-tight">Get in Touch</h2>
-          <p className="text-foreground/80">Have questions about courses, schedules, or fees? Send us a message via WhatsApp.</p>
-          <form onSubmit={handleSubmit} className="grid gap-3">
-            <input
-              name="name"
-              value={form.name}
-              onChange={handleChange}
-              className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
-              placeholder="Full name"
-              required
-            />
-            <input
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              type="email"
-              className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
-              placeholder="Email"
-              required
-            />
-            <input
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              className="rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
-              placeholder="Phone"
-              required
-            />
-            <textarea
-              name="message"
-              value={form.message}
-              onChange={handleChange}
-              className="min-h-[120px] rounded-md border bg-background px-3 py-2 text-foreground placeholder:text-foreground/50"
-              placeholder="Your message"
-              required
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="h-11 rounded-md bg-primary px-5 font-semibold text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+    <section id="contact" className="py-20 bg-[#e0e5ec]">
+      <div className="container mx-auto px-6">
+        <div className={`max-w-6xl mx-auto rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-8 md:p-12 lg:p-16`}>
+          
+          <div className="grid gap-12 md:grid-cols-2 items-start">
+            
+            {/* Left Side - Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="space-y-8"
             >
-              {isSubmitting ? "Sending..." : "Send via WhatsApp"}
-            </button>
-          </form>
-        </div>
-        <div className="overflow-hidden rounded-xl border">
-          <iframe
-            title="Skill Training Center Nagpur Location"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.337405892367!2d79.067185!3d21.1363751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c1000c0583e5%3A0x2a9d4b509fe5934e!2sSS%20Infotech%20Nagpur!5e0!3m2!1sen!2sin!4v1695739200000!5m2!1sen!2sin"
-            width="100%"
-            height="350"
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            className="border-0"
-          />
+              {/* Header */}
+              <div>
+                <div className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] mb-6">
+                  <MapPinIcon className="w-5 h-5 text-emerald-600" />
+                  <span className="font-semibold text-emerald-700">Get In Touch</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-800 leading-tight">
+                  Start Your Journey Today
+                </h2>
+                <p className="mt-4 text-lg text-gray-600">
+                  Have questions about courses, schedules, or fees? 
+                  Send us a message via WhatsApp. Our team will respond quickly.
+                </p>
+              </div>
+
+              {/* Neumorphic Form */}
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">Full Name</label>
+                    <input
+                      name="name"
+                      value={form.name}
+                      onChange={handleChange}
+                      className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} 
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50 
+                        text-gray-700 placeholder:text-gray-400 transition-all`}
+                      placeholder="Enter your full name"
+                      required
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-600 mb-2">Email Address</label>
+                    <input
+                      name="email"
+                      type="email"
+                      value={form.email}
+                      onChange={handleChange}
+                      className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} 
+                        focus:outline-none focus:ring-2 focus:ring-emerald-400/50 
+                        text-gray-700 placeholder:text-gray-400 transition-all`}
+                      placeholder="your@email.com"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-2">Phone Number</label>
+                  <input
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    className={`w-full px-6 py-4 rounded-2xl bg-[#e0e5ec] ${insetShadow} 
+                      focus:outline-none focus:ring-2 focus:ring-emerald-400/50 
+                      text-gray-700 placeholder:text-gray-400 transition-all`}
+                    placeholder="+91 98765 43210"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-600 mb-2">Your Message</label>
+                  <textarea
+                    name="message"
+                    value={form.message}
+                    onChange={handleChange}
+                    rows={5}
+                    className={`w-full px-6 py-4 rounded-3xl bg-[#e0e5ec] ${insetShadow} resize-y min-h-[140px]
+                      focus:outline-none focus:ring-2 focus:ring-emerald-400/50 
+                      text-gray-700 placeholder:text-gray-400 transition-all`}
+                    placeholder="Tell us about your goals, course interest, or any questions..."
+                    required
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={`w-full py-4 px-8 rounded-3xl font-semibold text-lg flex items-center justify-center gap-3 
+                    bg-[#e0e5ec] ${raisedShadow} 
+                    hover:shadow-[8px_8px_16px_#bebebe,-8px_-8px_16px_#ffffff] 
+                    active:${insetShadow} 
+                    text-gray-800 disabled:opacity-70 transition-all duration-300`}
+                >
+                  {isSubmitting ? (
+                    "Preparing WhatsApp Message..."
+                  ) : (
+                    <>
+                      Send via WhatsApp
+                      <PaperAirplaneIcon className="w-6 h-6" />
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            </motion.div>
+
+            {/* Right Side - Google Map */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="relative"
+            >
+              <div className={`rounded-3xl overflow-hidden bg-[#e0e5ec] ${raisedShadow} p-3 shadow-inner`}>
+                <div className="rounded-2xl overflow-hidden border border-gray-200/50">
+                  <iframe
+                    title="Skill Training Center Nagpur Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.337405892367!2d79.067185!3d21.1363751!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c1000c0583e5%3A0x2a9d4b509fe5934e!2sSS%20Infotech%20Nagpur!5e0!3m2!1sen!2sin!4v1695739200000!5m2!1sen!2sin"
+                    width="100%"
+                    height="460"
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="border-0 w-full"
+                  />
+                </div>
+              </div>
+
+              {/* Floating Info Badge */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -bottom-4 -left-4 bg-[#e0e5ec] px-5 py-3 rounded-2xl text-sm font-medium shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff]"
+              >
+                📍 SS Infotech, Nagpur
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

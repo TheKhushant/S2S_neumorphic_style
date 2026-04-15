@@ -4,14 +4,21 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
 // import Hero1 from "../../../public/image.png";
 // import Hero2 from "../../../public/DA.png";
-import Hero3 from "../../../public/py1.png";
-import hero4 from "../../../public/AIdata2.jpg"
+// import Hero3 from "../honeBanner/crt.jpeg";
+// import hero4 from "../honeBanner/german.jpeg"
+// import Hero1 from "../../../public/honeBanner/crt.jpeg";
+import Hero2 from "../../../public/honeBanner/5.png";
+import Hero3 from "../../../public/honeBanner/4.png";
+import hero4 from "../../../public/honeBanner/3.png";
+import hero5 from "../../../public/honeBanner/2.png";
+// import hero6 from "../../../public/honeBanner/2.png";
 
 const slides = [
   { image: Hero3, cta: { label: "Explore Courses", to: "/courses" } },
-  // { image: Hero2, cta: { label: "View Programs", to: "/courses" } },
-  // { image: Hero1, cta: { label: "Contact Us", to: "/contact" } },
+  { image: Hero2, cta: { label: "View Programs", to: "/courses" } },
   { image: hero4, cta: { label: "Contact Us", to: "/contact" } },
+  { image: hero5, cta: { label: "Contact Us", to: "/contact" } },
+  // { image: hero6, cta: { label: "Contact Us", to: "/contact" } },
 ];
 
 export default function HeroSlider() {
