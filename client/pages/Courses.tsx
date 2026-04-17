@@ -34,8 +34,9 @@ export default function Courses() {
 
   return (
     <Layout>
-      <section className="min-h-screen bg-[#e0e5ec] py-12 md:py-20">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="min-h-screen bg-[#e0e5ec] py-12 md:py-5">
+        <div className="max-w-6xl mx-auto px-6">          
+
           {/* Header */}
           <div className="mx-auto max-w-2xl text-center mb-12">
             <motion.div
@@ -57,60 +58,43 @@ export default function Courses() {
             </p>
           </div>
 
-          {/* Filters Section - Neumorphic Card */}
-          <div className="max-w-4xl mx-auto mb-16">
-            <div className="bg-[#e0e5ec] rounded-3xl p-6 md:p-8 shadow-[6px_6px_14px_#bebebe,-6px_-6px_14px_#ffffff]">
-              <div className="flex flex-col gap-5 md:flex-row md:items-end">
-                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  {/* Search Input */}
-                  <div>
-                    <input
-                      value={query}
-                      onChange={(e) => setQuery(e.target.value)}
-                      placeholder="Search courses..."
-                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 placeholder:text-gray-500 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
-                    />
-                  </div>
+          {/* Filters Section -Card */}
+          <div className="max-w-4xl mx-auto mb-5">
+            <div className="bg-[#e0e5ec] rounded-3xl p-5 shadow-[6px_6px_14px_#bebebe,-6px_-6px_14px_#ffffff]">
+              <div className="flex flex-col md:flex-row gap-3 md:items-end">
+                
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <input
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    placeholder="Search courses..."
+                    className="w-full bg-[#e0e5ec] rounded-3xl px-6 py-3 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] outline-none"
+                  />
 
-                  {/* Category Filter */}
-                  <div>
-                    <select
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
-                    >
-                      <option value="">All Categories</option>
-                      {categories.map((c) => (
-                        <option key={c} value={c}>{c}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                    className="w-full bg-[#e0e5ec] rounded-3xl px-6 py-3 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] outline-none"
+                  >
+                    <option value="">All Categories</option>
+                    {categories.map((c) => <option key={c} value={c}>{c}</option>)}
+                  </select>
 
-                  {/* Level Filter */}
-                  <div>
-                    <select
-                      value={level}
-                      onChange={(e) => setLevel(e.target.value)}
-                      className="w-full bg-[#e0e5ec] border-none rounded-3xl px-6 py-3.5 text-gray-800 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_5px_5px_12px_#bebebe,inset_-5px_-5px_12px_#ffffff] focus:outline-none transition-all"
-                    >
-                      <option value="">All Levels</option>
-                      {levels.map((l) => (
-                        <option key={l} value={l}>{l}</option>
-                      ))}
-                    </select>
-                  </div>
+                  <select
+                    value={level}
+                    onChange={(e) => setLevel(e.target.value)}
+                    className="w-full bg-[#e0e5ec] rounded-3xl px-6 py-3 shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] focus:shadow-[inset_6px_6px_12px_#bebebe,inset_-6px_-6px_12px_#ffffff] outline-none"
+                  >
+                    <option value="">All Levels</option>
+                    {levels.map((l) => <option key={l} value={l}>{l}</option>)}
+                  </select>
                 </div>
 
-                {/* Clear Filters Button */}
                 <button
-                  onClick={() => {
-                    setQuery("");
-                    setCategory("");
-                    setLevel("");
-                  }}
-                  className="w-full md:w-auto px-8 py-3.5 rounded-3xl font-semibold text-gray-700 bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all"
+                  onClick={() => { setQuery(""); setCategory(""); setLevel(""); }}
+                  className="px-8 py-3 rounded-3xl font-semibold text-gray-700 bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff] hover:shadow-[6px_6px_12px_#bebebe,-6px_-6px_12px_#ffffff] active:shadow-[inset_4px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff] transition-all whitespace-nowrap"
                 >
-                  Clear Filters
+                  Clear
                 </button>
               </div>
             </div>

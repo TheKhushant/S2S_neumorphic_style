@@ -1,4 +1,3 @@
-
 export interface Module {
   title: string;
   topics: string[];
@@ -28,87 +27,468 @@ export interface Course {
 
 export const courses: Course[] = [
   {
-    id: "fullstack-java",
-    title: "Full-Stack Java Developer",
-    short: "Enterprise Java, Spring Boot & Microservices",
+    id: "crt-coding-lecture",
+    title: "CRT (Coding Lecture)",
+    short: "Campus Recruitment Training - Coding Mastery",
     description:
-      "Become a backend & full-stack Java developer with hands-on projects, REST APIs, Microservices, and deployment workflows.",
-    duration: "5 Months",
-    fees: "",
-    level: "Advanced",
-    category: "Fullstack",
-    syllabus: [
-      "Core Java & OOPs",
-      "Collections & Generics",
-      "Spring & Spring Boot",
-      "REST APIs & Microservices",
-      "Hibernate/JPA",
-      "SQL & NoSQL Databases",
-      "Testing & CI/CD",
-      "Cloud Basics (AWS/GCP)",
-    ],
-    modules: [
-      { title: "Java Core", topics: ["OOPs", "Collections", "Concurrency"] },
-      { title: "Spring Ecosystem", topics: ["Spring Core", "Spring Boot", "Spring Security"] },
-      { title: "Data & Persistence", topics: ["JPA/Hibernate", "SQL", "MongoDB"] },
-      { title: "Microservices", topics: ["Design", "Gateway", "Service Discovery"] },
-    ],
-    projects: [
-      "E-commerce REST API with Spring Boot",
-      "Microservice-based Order Processing System",
-    ],
-    outcomes: [
-      "Build production-ready backend services",
-      "Understand microservice architecture",
-      "Prepare for interviews and placements",
-    ],
-    prerequisites: ["Basic programming knowledge", "Familiarity with Linux/CLI"],
-    schedule: "Weekday / Weekend batches available",
-    image: "https://www.vcubesoftsolutions.com/wp-content/uploads/2023/11/image.jpg",
-    certificate: "Certificate of Completion: Full-Stack Java Developer",
-    demoVideo: "/videos/fullstack-java-demo.mp4",
-    color: "from-blue-500 to-blue-700",
-    bgColor: "from-blue-500/10 to-blue-700/10",
-  },
-  {
-    id: "python-dsa",
-    title: "Python & DSA",
-    short: "Master Data Structures & Algorithms with Python",
-    description:
-      "Learn problem-solving and coding fundamentals through Python, focusing on Data Structures & Algorithms (DSA). Build strong foundations for interviews, competitive programming, and real-world applications.",
-    duration: "3 Months",
+      "Comprehensive Campus Recruitment Training (CRT) program focused on coding skills, aptitude building, and interview preparation. Master problem-solving techniques, crack coding rounds, and ace technical interviews with our structured CRT program designed for campus placements.",
+    duration: "2 Months",
     fees: "",
     level: "Beginner",
-    category: "Programming",
+    category: "Placement Training",
     syllabus: [
-      "Python Basics & OOP",
-      "Arrays & Strings",
-      "Linked Lists",
-      "Stacks & Queues",
-      "Recursion & Backtracking",
-      "Trees & Graphs",
-      "Sorting & Searching Algorithms",
-      "Dynamic Programming",
-      "Problem-Solving & Interview Prep",
+      "Aptitude & Logical Reasoning",
+      "Quantitative Aptitude",
+      "Verbal & Non-Verbal Reasoning",
+      "C Programming Fundamentals",
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming Concepts",
+      "Database & SQL Queries",
+      "Technical Interview Preparation",
+      "Mock Coding Tests",
+      "Group Discussion Practice",
+      "Resume Building Workshop",
+      "Soft Skills & Communication",
     ],
     modules: [
-      { title: "Python Foundations", topics: ["Syntax", "Loops", "Functions", "OOP"] },
-      { title: "Core DSA", topics: ["Arrays", "Strings", "Linked Lists", "Stacks", "Queues"] },
-      { title: "Advanced DSA", topics: ["Trees", "Graphs", "Dynamic Programming", "Greedy Algorithms"] },
+      { 
+        title: "Aptitude Training", 
+        topics: [
+          "Number Systems & Algebra",
+          "Percentages, Profit & Loss",
+          "Time, Speed & Distance",
+          "Permutations & Combinations",
+          "Probability",
+          "Logical Puzzles",
+          "Data Interpretation"
+        ] 
+      },
+      { 
+        title: "Coding Fundamentals", 
+        topics: [
+          "C Language Basics",
+          "Control Structures",
+          "Functions & Pointers",
+          "Arrays & Strings",
+          "Structures & Unions",
+          "File Handling"
+        ] 
+      },
+      {
+        id: "fullstack-java",
+        title: "Full-Stack Java Developer",
+        short: "Enterprise Java, Spring Boot & Microservices",
+        description:
+          "Become a backend & full-stack Java developer with hands-on projects, REST APIs, Microservices, and deployment workflows.",
+        duration: "5 Months",
+        fees: "",
+        level: "Advanced",
+        category: "Fullstack",
+        syllabus: [
+          "Core Java & OOPs",
+          "Collections & Generics",
+          "Spring & Spring Boot",
+          "REST APIs & Microservices",
+          "Hibernate/JPA",
+          "SQL & NoSQL Databases",
+          "Testing & CI/CD",
+          "Cloud Basics (AWS/GCP)",
+        ],
+        modules: [
+          { title: "Java Core", topics: ["OOPs", "Collections", "Concurrency"] },
+          { title: "Spring Ecosystem", topics: ["Spring Core", "Spring Boot", "Spring Security"] },
+          { title: "Data & Persistence", topics: ["JPA/Hibernate", "SQL", "MongoDB"] },
+          { title: "Microservices", topics: ["Design", "Gateway", "Service Discovery"] },
+        ],
+        projects: [
+          "E-commerce REST API with Spring Boot",
+          "Microservice-based Order Processing System",
+        ],
+        outcomes: [
+          "Build production-ready backend services",
+          "Understand microservice architecture",
+          "Prepare for interviews and placements",
+        ],
+        prerequisites: ["Basic programming knowledge", "Familiarity with Linux/CLI"],
+        schedule: "Weekday / Weekend batches available",
+        image: "https://www.vcubesoftsolutions.com/wp-content/uploads/2023/11/image.jpg",
+        certificate: "Certificate of Completion: Full-Stack Java Developer",
+        demoVideo: "/videos/fullstack-java-demo.mp4",
+        color: "from-blue-500 to-blue-700",
+        bgColor: "from-blue-500/10 to-blue-700/10",
+      },
+      {
+        id: "python-dsa",
+        title: "Python & DSA",
+        short: "Master Data Structures & Algorithms with Python",
+        description:
+          "Learn problem-solving and coding fundamentals through Python, focusing on Data Structures & Algorithms (DSA). Build strong foundations for interviews, competitive programming, and real-world applications.",
+        duration: "3 Months",
+        fees: "",
+        level: "Beginner",
+        category: "Programming",
+        syllabus: [
+          "Python Basics & OOP",
+          "Arrays & Strings",
+          "Linked Lists",
+          "Stacks & Queues",
+          "Recursion & Backtracking",
+          "Trees & Graphs",
+          "Sorting & Searching Algorithms",
+          "Dynamic Programming",
+          "Problem-Solving & Interview Prep",
+        ],
+        modules: [
+          { title: "Python Foundations", topics: ["Syntax", "Loops", "Functions", "OOP"] },
+          { title: "Core DSA", topics: ["Arrays", "Strings", "Linked Lists", "Stacks", "Queues"] },
+          { title: "Advanced DSA", topics: ["Trees", "Graphs", "Dynamic Programming", "Greedy Algorithms"] },
+        ],
+        projects: ["Mini Coding Challenges", "Algorithm Visualizer", "Problem-Solving Portfolio"],
+        outcomes: [
+          "Write efficient algorithms",
+          "Crack coding interviews",
+          "Build strong problem-solving mindset",
+        ],
+        prerequisites: ["Basic knowledge of Python programming"],
+        schedule: "Weekday & Weekend batches",
+        image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+        certificate: "Certificate of Completion: Python & DSA",
+        demoVideo: "/videos/python-dsa-demo.mp4",
+        color: "from-green-500 to-green-700",
+        bgColor: "from-green-500/10 to-green-700/10",
+      },
     ],
-    projects: ["Mini Coding Challenges", "Algorithm Visualizer", "Problem-Solving Portfolio"],
+    projects: [
+      "Coding Challenge Portfolio (50+ Problems)",
+      "Mock Placement Test Series",
+      "Technical Presentation Project",
+    ],
     outcomes: [
-      "Write efficient algorithms",
-      "Crack coding interviews",
-      "Build strong problem-solving mindset",
+      "Crack campus placement coding rounds",
+      "Master aptitude and reasoning for placement tests",
+      "Build confidence for technical interviews",
+      "Develop strong problem-solving abilities",
+      "Create impressive resume and portfolio",
     ],
-    prerequisites: ["Basic knowledge of Python programming"],
-    schedule: "Weekday & Weekend batches",
-    image: "https://images.unsplash.com/photo-1526379095098-d400fd0bf935?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: Python & DSA",
-    demoVideo: "/videos/python-dsa-demo.mp4",
-    color: "from-green-500 to-green-700",
-    bgColor: "from-green-500/10 to-green-700/10",
+    prerequisites: ["Basic understanding of mathematics", "Interest in coding"],
+    schedule: "Daily batches (Morning & Evening)",
+    image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    certificate: "Certificate of Completion: CRT - Coding Lecture",
+    demoVideo: "/videos/crt-coding-demo.mp4",
+    color: "from-yellow-500 to-orange-600",
+    bgColor: "from-yellow-500/10 to-orange-600/10",
+  },
+  {
+    id: "servicenow",
+    title: "ServiceNow",
+    short: "Enterprise Service Management Platform",
+    description:
+      "Master ServiceNow, the leading enterprise service management platform. Learn to automate IT services, streamline workflows, and build custom applications. Gain expertise in ITSM, ITOM, and ServiceNow development with hands-on projects and real-world scenarios.",
+    duration: "3.5 Months",
+    fees: "",
+    level: "Intermediate",
+    category: "IT Service Management",
+    syllabus: [
+      "ServiceNow Platform Overview",
+      "IT Service Management (ITSM)",
+      "IT Operations Management (ITOM)",
+      "ServiceNow Scripting & Development",
+      "Flow Designer & Automation",
+      "Service Portal Development",
+      "Integration Hub & REST APIs",
+      "Performance Analytics",
+      "Security Operations (SecOps)",
+      "Custom Application Development",
+      "ServiceNow Administration",
+      "Best Practices & Governance",
+    ],
+    modules: [
+      { 
+        title: "Platform Fundamentals", 
+        topics: [
+          "ServiceNow Architecture",
+          "Navigation & UI",
+          "Tables & Schema",
+          "Users, Groups & Roles",
+          "Import Sets & Transform Maps"
+        ] 
+      },
+      { 
+        title: "ITSM & ITOM", 
+        topics: [
+          "Incident Management",
+          "Problem Management",
+          "Change Management",
+          "Service Catalog",
+          "CMDB & Discovery",
+          "Event Management"
+        ] 
+      },
+      { 
+        title: "Development & Scripting", 
+        topics: [
+          "Client Scripts",
+          "Business Rules",
+          "Script Includes",
+          "UI Policies & Actions",
+          "GlideRecord API",
+          "ServiceNow APIs"
+        ] 
+      },
+      { 
+        title: "Automation & Integration", 
+        topics: [
+          "Flow Designer",
+          "Workflow Editor",
+          "Integration Hub",
+          "REST & SOAP Integration",
+          "Email Notifications",
+          "Scheduled Jobs"
+        ] 
+      },
+      { 
+        title: "Advanced Features", 
+        topics: [
+          "Service Portal",
+          "Virtual Agent",
+          "Performance Analytics",
+          "Reporting & Dashboards",
+          "Mobile App Development",
+          "ATF Testing"
+        ] 
+      },
+    ],
+    projects: [
+      "ITSM Implementation Project",
+      "Custom Service Portal Development",
+      "Automated Workflow for HR Onboarding",
+      "Integration with Third-Party Tools",
+    ],
+    outcomes: [
+      "Become a certified ServiceNow professional",
+      "Implement ITSM solutions for enterprises",
+      "Develop custom ServiceNow applications",
+      "Automate complex business workflows",
+      "Integrate ServiceNow with external systems",
+    ],
+    prerequisites: ["Basic understanding of IT processes", "JavaScript fundamentals recommended"],
+    schedule: "Weekday / Weekend batches available",
+    image: "https://fabrikbrands.com/wp-content/uploads/ServiceNow-Logo-History-1.png",
+    certificate: "Certificate of Completion: ServiceNow Developer",
+    demoVideo: "/videos/servicenow-demo.mp4",
+    color: "from-emerald-500 to-teal-600",
+    bgColor: "from-emerald-500/10 to-teal-600/10",
+  },
+  {
+    id: "databricks",
+    title: "DataBricks",
+    short: "Unified Data Analytics Platform",
+    description:
+      "Master DataBricks, the unified data analytics platform built on Apache Spark. Learn big data processing, machine learning, and real-time analytics. Build scalable data pipelines, implement MLOps, and work with Delta Lake for enterprise-grade data solutions.",
+    duration: "3 Months",
+    fees: "",
+    level: "Intermediate",
+    category: "Big Data & Analytics",
+    syllabus: [
+      "Introduction to DataBricks Platform",
+      "Apache Spark Architecture",
+      "Spark SQL & DataFrames",
+      "Delta Lake Fundamentals",
+      "Data Engineering Pipelines",
+      "Streaming Analytics",
+      "Machine Learning with MLflow",
+      "Feature Store & Model Registry",
+      "DataBricks SQL Analytics",
+      "Performance Optimization",
+      "Cloud Integration (AWS/Azure/GCP)",
+      "Security & Governance",
+      "CI/CD for Data Pipelines",
+    ],
+    modules: [
+      { 
+        title: "Platform & Spark Basics", 
+        topics: [
+          "DataBricks Workspace",
+          "Notebooks & Clusters",
+          "Spark Architecture",
+          "RDDs, DataFrames & Datasets",
+          "Spark SQL",
+          "Catalyst Optimizer"
+        ] 
+      },
+      { 
+        title: "Delta Lake & Data Engineering", 
+        topics: [
+          "Delta Lake Architecture",
+          "ACID Transactions",
+          "Time Travel",
+          "Schema Evolution",
+          "Change Data Capture",
+          "Data Pipeline Patterns"
+        ] 
+      },
+      { 
+        title: "Streaming & Real-Time Analytics", 
+        topics: [
+          "Structured Streaming",
+          "Window Operations",
+          "Watermarking",
+          "Output Modes",
+          "Checkpointing",
+          "Stream-Stream Joins"
+        ] 
+      },
+      { 
+        title: "Machine Learning & MLOps", 
+        topics: [
+          "MLflow Tracking",
+          "Model Registry",
+          "Feature Store",
+          "AutoML",
+          "Model Serving",
+          "A/B Testing"
+        ] 
+      },
+      { 
+        title: "Advanced Features", 
+        topics: [
+          "Photon Engine",
+          "DataBricks SQL",
+          "Dashboards & Alerts",
+          "Unity Catalog",
+          "Workflows & Jobs",
+          "Git Integration"
+        ] 
+      },
+    ],
+    projects: [
+      "Real-Time ETL Pipeline with Delta Live Tables",
+      "Customer Churn Prediction Model",
+      "Streaming IoT Data Analytics Dashboard",
+      "Data Lakehouse Implementation",
+    ],
+    outcomes: [
+      "Design and implement data lakehouse solutions",
+      "Build production-grade data pipelines",
+      "Deploy machine learning models at scale",
+      "Optimize Spark performance",
+      "Implement real-time analytics solutions",
+    ],
+    prerequisites: ["SQL knowledge", "Basic Python or Scala programming"],
+    schedule: "Weekday / Weekend batches available",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjD9h7WQJjdLdSWMd5SVLeWEIeYnk4940gyQ&s",
+    certificate: "Certificate of Completion: DataBricks Professional",
+    demoVideo: "/videos/databricks-demo.mp4",
+    color: "from-orange-500 to-red-600",
+    bgColor: "from-orange-500/10 to-red-600/10",
+  },
+  {
+    id: "german-language",
+    title: "German Language",
+    short: "Comprehensive German Language Training",
+    description:
+      "Master the German language with our structured program covering all proficiency levels (A1 to C2). Learn from certified instructors, practice with native speakers, and prepare for Goethe-Zertifikat exams. Open doors to study, work, and settle in Germany with confidence.",
+    duration: "3-6 Months (Level-wise)",
+    fees: "",
+    level: "Beginner",
+    category: "Foreign Language",
+    syllabus: [
+      "German Alphabet & Pronunciation",
+      "Basic Grammar & Sentence Structure",
+      "Vocabulary Building",
+      "Conversational German",
+      "Reading Comprehension",
+      "Writing Skills Development",
+      "Listening Practice",
+      "German Culture & Etiquette",
+      "Business German",
+      "Exam Preparation (A1-C2)",
+      "Interview Preparation",
+      "Visa Interview Practice",
+    ],
+    modules: [
+      { 
+        title: "A1 - Beginner Level", 
+        topics: [
+          "Introductions & Greetings",
+          "Numbers, Time & Dates",
+          "Family & Friends",
+          "Food & Shopping",
+          "Daily Routines",
+          "Basic Grammar (Articles, Cases)",
+          "Simple Conversations"
+        ] 
+      },
+      { 
+        title: "A2 - Elementary Level", 
+        topics: [
+          "Travel & Transportation",
+          "Work & Professions",
+          "Health & Body",
+          "Past Tense (Perfekt)",
+          "Modal Verbs",
+          "Connectors & Subordinate Clauses",
+          "Everyday Situations"
+        ] 
+      },
+      { 
+        title: "B1 - Intermediate Level", 
+        topics: [
+          "Complex Grammar Structures",
+          "Future Tense & Konjunktiv II",
+          "Passive Voice",
+          "Expressing Opinions",
+          "Formal Letters & Emails",
+          "Current Affairs Discussions",
+          "Exam Preparation - Goethe B1"
+        ] 
+      },
+      { 
+        title: "B2 - Upper Intermediate", 
+        topics: [
+          "Advanced Grammar Mastery",
+          "Business Communication",
+          "Technical German",
+          "Academic Writing",
+          "Literature & Media",
+          "Debate & Presentation Skills",
+          "Exam Preparation - Goethe B2"
+        ] 
+      },
+      { 
+        title: "C1/C2 - Advanced & Mastery", 
+        topics: [
+          "Native-Level Fluency",
+          "Professional & Academic German",
+          "Complex Text Analysis",
+          "Idiomatic Expressions",
+          "Cultural Nuances",
+          "Specialized Vocabulary",
+          "Exam Preparation - Goethe C1/C2"
+        ] 
+      },
+    ],
+    projects: [
+      "German Language Portfolio",
+      "Cultural Presentation Project",
+      "Mock Goethe Exam Series",
+      "German Video Blog Creation",
+    ],
+    outcomes: [
+      "Achieve fluency in German language",
+      "Clear Goethe-Zertifikat exams (A1-C2)",
+      "Communicate confidently in professional settings",
+      "Prepare for study or work in Germany",
+      "Understand German culture and business etiquette",
+      "Qualify for German visa requirements",
+    ],
+    prerequisites: ["No prior German knowledge required for A1", "Interest in language learning"],
+    schedule: "Weekday & Weekend batches (Morning/Evening)",
+    image: "https://images.unsplash.com/photo-1527866959252-deab85ef7d1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    certificate: "Certificate of Completion: German Language Proficiency",
+    demoVideo: "/videos/german-language-demo.mp4",
+    color: "from-amber-500 to-red-700",
+    bgColor: "from-amber-500/10 to-red-700/10",
   },
   {
     id: "cyber-security",
@@ -288,49 +668,6 @@ export const courses: Course[] = [
     bgColor: "from-indigo-500/10 to-indigo-700/10",
   },
   {
-    id: "databricks",
-    title: "Databricks",
-    short: "Master Big Data with Databricks",
-    description:
-      "Master big data processing and analytics with our comprehensive Databricks training program. Learn to leverage Databricks for data engineering, machine learning, and real-time analytics. Gain hands-on experience with Spark, Delta Lake, and cloud integration through real-world projects.",
-    duration: "3 Months",
-    fees: "",
-    level: "Intermediate",
-    category: "Big Data",
-    syllabus: [
-      "Introduction to Databricks",
-      "Apache Spark Fundamentals",
-      "Data Engineering with Delta Lake",
-      "Machine Learning with MLflow",
-      "Real-Time Analytics",
-      "Cloud Integration (AWS/Azure/GCP)",
-      "Data Visualization in Databricks",
-      "Performance Optimization",
-    ],
-    modules: [
-      { title: "Databricks Basics", topics: ["Platform Overview", "Workspace Setup", "Notebooks"] },
-      { title: "Spark & Data Engineering", topics: ["Spark SQL", "DataFrames", "Delta Lake"] },
-      { title: "Machine Learning", topics: ["MLflow", "Model Training", "Hyperparameter Tuning"] },
-      { title: "Advanced Analytics", topics: ["Streaming", "Visualization", "Optimization"] },
-    ],
-    projects: [
-      "Real-Time Data Pipeline with Delta Lake",
-      "Machine Learning Model Deployment with MLflow",
-    ],
-    outcomes: [
-      "Build scalable data pipelines",
-      "Develop and deploy machine learning models",
-      "Master big data analytics with Databricks",
-    ],
-    prerequisites: ["Basic programming knowledge (Python/Scala)", "Familiarity with SQL"],
-    schedule: "Weekday / Weekend batches available",
-    image: "https://images.unsplash.com/photo-1516321318427-d4b6a33f1501?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    certificate: "Certificate of Completion: Databricks",
-    demoVideo: "/videos/databricks-demo.mp4",
-    color: "from-cyan-500 to-cyan-700",
-    bgColor: "from-cyan-500/10 to-cyan-700/10",
-  },
-  {
     id: "ai-data-analytics",
     title: "AI-Powered Data Analytics",
     short: "Master AI-Driven Data Analysis",
@@ -367,7 +704,7 @@ export const courses: Course[] = [
     ],
     prerequisites: ["Basic Python programming", "Familiarity with statistics"],
     schedule: "Weekday / Weekend batches available",
-    image: "https://images.unsplash.com/photo-1551288049-b1f3a0003a71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+    image: "https://www.hashstudioz.com/blog/wp-content/uploads/2025/01/How-AI-Powered-Analytics-is-Changing-the-Game-for-Businesses.png",
     certificate: "Certificate of Completion: AI-Powered Data Analytics",
     demoVideo: "../../videos/DAPreview.mp4",
     color: "from-orange-500 to-orange-700",

@@ -55,7 +55,7 @@ export default function OnlineTraining() {
   return (
     <Layout>
       <div className="min-h-screen bg-[#e0e5ec]">
-        <section className="container mx-auto px-4 py-16 relative">
+        <section className="container max-w-5xl max-w-6xl mx-auto px-4 py-16 relative">
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -118,9 +118,9 @@ export default function OnlineTraining() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="mb-12"
+            className="mb-12 "
           >
-            <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <div className="flex flex-col lg:flex-row gap-4 items-center max-w-5xl mx-auto">
               {/* Search Bar - Inset Style */}
               <div className="relative flex-1 max-w-2xl w-full">
                 <MagnifyingGlassIcon className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
