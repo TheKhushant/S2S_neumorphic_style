@@ -65,7 +65,7 @@ export default function HeroSlider() {
                     e.target.src = "https://via.placeholder.com/1920x1080";
                   }}
                 />
-                <div className="absolute inset-0 bg-black/20 xs:bg-black/25 sm:bg-black/30" />
+                {/* <div className="absolute inset-0 bg-black/20 xs:bg-black/25 sm:bg-black/30" /> */}
               </div>
             </div>
           ))}

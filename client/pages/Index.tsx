@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeInUp, stagger } from "@/lib/animations";
 import CoursesSection from "@/components/site/CoursesSection";
-// import OverseasDropdown from "@/components/OverseasDropdown";
+import FloatingSocialMenu from "@/components/site/FloatingSocialMenu";
 import {
   SparklesIcon,
   PlayCircleIcon,
@@ -25,14 +25,17 @@ import {
 import PosterTemplates from "@/components/site/PosterTemplates";
 import TestimonialsSection from "@/components/site/TestimonialsSection";
 
+
 export default function Index() {
-  const [hoveredCourse, setHoveredCourse] = useState<number | null>(null);
+  const [hoveredCourse, setHoveredCourse] = useState(null);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const navigate = useNavigate();
+  const videoRef = useRef(null);
 
-  // Featured courses data (unchanged)
+  // Featured courses data
   const featuredCourses = [
     {
       id: "python-dsa",
@@ -66,7 +69,7 @@ export default function Index() {
     }
   ];
 
-  // Testimonials data (unchanged)
+  // Testimonials data
   const testimonials = [
     {
       id: 1,
@@ -136,7 +139,7 @@ export default function Index() {
     }
   ];
 
-  // Auto-rotate testimonials (unchanged)
+  // Auto-rotate testimonials
   useEffect(() => {
     if (isPaused) return;
 
@@ -149,9 +152,9 @@ export default function Index() {
 
   const nextTestimonial = () => setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
   const prevTestimonial = () => setActiveTestimonial((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  const goToTestimonial = (index: number) => setActiveTestimonial(index);
+  const goToTestimonial = (index) => setActiveTestimonial(index);
 
-  const handleCourseClick = (courseId: string) => {
+  const handleCourseClick = (courseId) => {
     navigate(`/courses/${courseId}`);
   };
 
@@ -164,24 +167,28 @@ export default function Index() {
     <Layout>
       <div className="min-h-screen bg-[#e0e5ec]">
         <Hero />
-        {/* PosterTemplates assumed to be updated separately or kept as is */}
-        <PosterTemplates />
-        {/* ==================== FEATURED COURSES ==================== */}
-        <CoursesSection/>
+
+        {/* PosterTemplates - Make sure this component exists */}
+        {typeof PosterTemplates !== 'undefined' && <PosterTemplates />}
+        
+        {/* Courses Section */}
+        <CoursesSection />
 
         <Stats />
 
-        {/* ==================== ABOUT US ==================== */}
-        <section id="about" className="container py-20 ">
+        {/* About Us Section */}
+        <section id="about" className="container mx-auto px-4 py-20 max-w-7xl">
           <div className="grid items-center gap-16 lg:grid-cols-2">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               className="space-y-8"
             >
               <motion.div
                 initial={{ opacity: 0, scale: 0.5 }}
                 whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
                 className="inline-flex items-center gap-3 px-6 py-3 rounded-3xl bg-[#e0e5ec] shadow-[4px_4px_8px_#bebebe,-4px_-4px_8px_#ffffff]"
               >
                 <TrophyIcon className="w-5 h-5 text-amber-600" />
@@ -192,7 +199,7 @@ export default function Index() {
                 Innovating Education with AI
               </h2>
 
-              <div className="space-y-1 text-gray-600 leading-relaxed">
+              <div className="space-y-4 text-gray-600 leading-relaxed">
                 <p className="text-lg font-semibold text-gray-800">
                   Where innovation meets excellence in the realm of IT solutions and education.
                 </p>
@@ -202,7 +209,6 @@ export default function Index() {
                 </p>
               </div>
 
-              {/* <div className="space-y-6"> */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[
                   { title: "🎓 Education", content: "Education is key to personal and professional growth" },
@@ -213,6 +219,7 @@ export default function Index() {
                     key={idx}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
                     transition={{ delay: idx * 0.1 }}
                     className={`rounded-3xl p-7 ${raisedShadow} bg-[#e0e5ec]`}
                   >
@@ -227,32 +234,47 @@ export default function Index() {
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
               className="relative"
             >
               <div className={`rounded-3xl p-2 bg-[#e0e5ec] ${raisedShadow}`}>
-                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-white">
-                  <video
-                    src="/v1.mp4"
-                    className="h-full w-full object-cover rounded-3xl"
-                    controls
-                    autoPlay
-                    muted
-                    loop
-                    onPlay={() => setIsVideoPlaying(true)}
-                    onPause={() => setIsVideoPlaying(false)}
-                  />
+                <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-gray-900">
+                  {!videoError ? (
+                    <video
+                      ref={videoRef}
+                      src="/v1.mp4"
+                      className="h-full w-full object-cover rounded-3xl"
+                      controls
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      onPlay={() => setIsVideoPlaying(true)}
+                      onPause={() => setIsVideoPlaying(false)}
+                      onError={() => setVideoError(true)}
+                    />
+                  ) : (
+                    <div className="h-full w-full flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500">
+                      <div className="text-center text-white p-8">
+                        <PlayCircleIcon className="w-20 h-20 mx-auto mb-4" />
+                        <p className="text-lg font-semibold">Video preview unavailable</p>
+                        <p className="text-sm mt-2">Please check if v1.mp4 exists in your public folder</p>
+                      </div>
+                    </div>
+                  )}
 
                   <AnimatePresence>
-                    {!isVideoPlaying && (
+                    {!isVideoPlaying && !videoError && (
                       <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="absolute inset-0 bg-black/40 flex items-center justify-center"
+                        className="absolute inset-0 bg-black/40 flex items-center justify-center cursor-pointer"
+                        onClick={() => videoRef.current?.play()}
                       >
                         <motion.div
                           whileHover={{ scale: 1.1 }}
-                          className="w-20 h-20 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-[4px_4px_10px_#bebebe,-4px_-4px_10px_#ffffff]"
+                          className="w-20 h-20 rounded-full bg-white/90 backdrop-blur flex items-center justify-center shadow-[4px_4px_10px_#bebebe,-4px_-4px_10px_#ffffff] cursor-pointer"
                         >
                           <PlayCircleIcon className="w-10 h-10 text-violet-600" />
                         </motion.div>
@@ -281,60 +303,56 @@ export default function Index() {
           </div>
         </section>
 
-        {/* ==================== TESTIMONIALS ==================== */}
-        <TestimonialsSection 
-          testimonials={testimonials}
-        />
-        
+        {/* Testimonials Section */}
+        <TestimonialsSection testimonials={testimonials} />
 
         {/* Contact Section */}
         <section id="contact" className="py-20">
-          <div className="container mx-auto px-6">
-            
-            {/* Main Neumorphic Container */}
+          <div className="container mx-auto px-6 max-w-7xl">
             <div className={`max-w-5xl mx-auto rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-8 md:p-12`}>
-              
-              {/* Header */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 className="mx-auto max-w-3xl text-center mb-16"
               >
-                {/* Neumorphic Badge */}
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
                   className="inline-flex items-center gap-3 px-7 py-3.5 rounded-3xl bg-[#e0e5ec] shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff] mb-8"
                 >
                   <UserGroupIcon className="w-6 h-6 text-sky-600" />
                   <span className="font-semibold text-sky-700 tracking-wide">Get In Touch</span>
                 </motion.div>
 
-                {/* Heading */}
-                <h2 className="text-5xl md:text-6xl font-bold text-gray-800 leading-tight tracking-tight">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight tracking-tight">
                   Start Your Journey Today
                 </h2>
                 
-                <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed mt-4">
                   Reach out to us for more information about our services and training programs. 
                   Our team is ready to help you take the next step.
                 </p>
               </motion.div>
 
-              {/* Form Container - Neumorphic Card */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
                 className={`rounded-3xl bg-[#e0e5ec] ${raisedShadow} p-8 md:p-10 lg:p-12`}
               >
                 <ContactForm />
               </motion.div>
-
             </div>
           </div>
+          
+   
         </section>
+
       </div>
+      <FloatingSocialMenu />
     </Layout>
   );
 }
