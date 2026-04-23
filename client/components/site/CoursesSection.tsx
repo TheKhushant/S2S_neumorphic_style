@@ -1,5 +1,4 @@
 // src/components/CoursesSection.tsx
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -18,7 +17,10 @@ interface Course {
   level: string;
   features: string[];
   color: string;
-  icon: LucideIcon;
+  gradientFrom: string;
+  gradientTo: string;
+  // icon: LucideIcon;
+  image: string;
 }
 
 const featuredCourses: Course[] = [
@@ -30,7 +32,9 @@ const featuredCourses: Course[] = [
     level: "Beginner",
     features: ["Live Sessions", "Projects", "Mentorship"],
     color: "from-blue-500 to-blue-600",
-    icon: BrainIcon,
+    gradientFrom: "#3b82f6",
+    gradientTo: "#2563eb",
+    image: "https://dtmvamahs40ux.cloudfront.net/public/course/course-3131-mai.jpg",
   },
   {
     id: "advanced-ml",
@@ -40,7 +44,9 @@ const featuredCourses: Course[] = [
     level: "Advanced",
     features: ["Code Reviews", "Research Papers", "Capstone"],
     color: "from-purple-500 to-purple-600",
-    icon: CodeIcon,
+    gradientFrom: "#8b5cf6",
+    gradientTo: "#7c3aed",
+    image: "https://media.licdn.com/dms/image/v2/D4D12AQEW_M-bnDIAFQ/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1679915971767?e=2147483647&v=beta&t=tfFdaWkE332zkhuCv6hN7Q6kEA9qLUVCCJ-06UIWkuU",
   },
   {
     id: "data-science",
@@ -50,7 +56,9 @@ const featuredCourses: Course[] = [
     level: "Intermediate",
     features: ["Real Datasets", "Dashboards", "Portfolio"],
     color: "from-emerald-500 to-emerald-600",
-    icon: BookOpenIcon,
+    gradientFrom: "#10b981",
+    gradientTo: "#059669",
+    image: "https://www.mygreatlearning.com/blog/wp-content/uploads/2019/09/What-is-data-science-2.jpg",
   },
 ];
 
@@ -114,24 +122,67 @@ const CoursesSection = ({
             <motion.div
               key={course.id}
               variants={fadeInUp(i * 0.1)}
-              whileHover={{ y: -6, scale: 1.015 }}
               onHoverStart={() => setHoveredCourse(i)}
               onHoverEnd={() => setHoveredCourse(null)}
               onClick={() => handleCourseClick(course.id)}
               className="group relative w-full max-w-sm rounded-3xl bg-[#e0e5ec] p-6 cursor-pointer transition-all duration-300 shadow-[3px_3px_6px_#bebebe,-3px_-3px_6px_#ffffff] hover:shadow-[5px_5px_10px_#bebebe,-5px_-5px_10px_#ffffff]"
             >
-              {/* Icon */}
-              <motion.div
-                animate={{ scale: hoveredCourse === i ? 1.08 : 1 }}
-                className={`inline-flex p-3 rounded-2xl bg-gradient-to-br ${course.color} text-white mb-5 shadow-[3px_3px_6px_#bebebe,-3px_-3px_6px_#ffffff]`}
-              >
-                <course.icon className="w-6 h-6" />
-              </motion.div>
+              {/* Image Container with Neumorphic Effect */}
+              <div className="relative mb-2">
+                {/* Blurred gradient blob behind the image for depth */}
+                <div
+                  className="absolute -inset-4 rounded-full opacity-60 blur-2xl transition-all duration-500 group-hover:opacity-80"
+                  style={{
+                    background: `radial-gradient(circle, ${course.gradientFrom}40, ${course.gradientTo}10)`
+                  }}
+                />
+
+                {/* Outer shadow ring on hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-2xl pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: hoveredCourse === i ? 1 : 0 }}
+                  transition={{ duration: 0.3 }}
+                  style={{
+                    boxShadow: `0 0 0 3px ${course.gradientFrom}80, 0 0 20px ${course.gradientFrom}60`,
+                  }}
+                />
+
+                {/* Rounded container with gradient background */}
+                <div
+                  className="relative w-full rounded-2xl overflow-hidden"
+                  style={{
+                    background: `linear-gradient(135deg, ${course.gradientFrom}20, ${course.gradientTo}08)`,
+                    boxShadow: `inset 2px 2px 5px rgba(0,0,0,0.05), inset -3px -3px 7px rgba(255,255,255,0.7), 5px 5px 12px rgba(0,0,0,0.1), -5px -5px 12px rgba(255,255,255,0.8)`,
+                  }}
+                >
+                  {/* Inner shadow overlay for pressed neumorphic effect */}
+                  <div
+                    className="absolute inset-0 pointer-events-none rounded-2xl"
+                    style={{
+                      boxShadow: `inset 0px 2px 4px rgba(0,0,0,0.06), inset 0px -1px 2px rgba(255,255,255,0.8)`,
+                    }}
+                  />
+
+                  {/* Image */}
+                  <motion.div
+                    animate={{ scale: hoveredCourse === i ? 1.05 : 1 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                    className="relative flex justify-center items-center"
+                  >
+                    <img
+                      src={course.image}
+                      alt={course.title}
+                      className="w-full h-48 object-contain rounded-xl"
+                    />
+                  </motion.div>
+                </div>
+              </div>
 
               <h3 className="text-xl font-semibold text-gray-800 mb-2 tracking-tight">
                 {course.title}
               </h3>
-              
+
               <p className="text-gray-600 text-[15px] leading-snug mb-5 line-clamp-3">
                 {course.description}
               </p>
