@@ -17,6 +17,8 @@ export default defineConfig(({ mode }) => ({
     outDir: "dist/spa",
   },
   plugins: [react(), expressPlugin()],
+  assetsInclude: ['**/*.jpg', '**/*.jpeg', '**/*.png', '**/*.gif', '**/*.webp'],
+
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
