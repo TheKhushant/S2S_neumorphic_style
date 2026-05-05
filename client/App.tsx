@@ -23,6 +23,9 @@ import Contact from "./pages/Contact";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import ScrollToTop from "./components/ScrollToTop";
 import OverseasTranning from "@/components/site/OverseasTranning";
+import EnquiryForm from "./pages/EnquiryForm";
+import Dashboard from "./pages/EnquiryDashboard";
+import { EnquiryProvider } from "@/contexts/EnquiryContext";
 
 const queryClient = new QueryClient();
 function RedirectToOverseas() {
@@ -38,51 +41,56 @@ const App = () => (
       <Sonner />
 
       <BrowserRouter>
-        <ScrollToTop />
+        <EnquiryProvider>
+          <ScrollToTop />
 
-        {/* Main Neumorphic App Wrapper */}
-        <div className="min-h-screen bg-[#e0e5ec] overflow-x-hidden">
-          
-          {/* Subtle Background Pattern (Optional Soft Texture) */}
-          <div className="fixed inset-0 bg-[radial-gradient(#d8dde6_0.8px,transparent_1px)] bg-[length:40px_40px] opacity-40 pointer-events-none" />
+          {/* Main Neumorphic App Wrapper */}
+          <div className="min-h-screen bg-[#e0e5ec] overflow-x-hidden">
 
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/courses/:id" element={<CourseDetails />} />
-            <Route path="/enroll/:id" element={<Enroll />} />
-            <Route path="/online-training" element={<OnlineTraining />} />
-            <Route path="/classroom-training" element={<ClassroomTraining />} />
-            <Route path="/corporate-training" element={<CorporateTraining />} />
-            <Route path="/placements" element={<Placements />} />
-            <Route path="/blog" element={<Blog raisedShadow={undefined} insetShadow={undefined} />} />
-            <Route path="/about" element={<About raisedShadow={undefined} insetShadow={undefined} />} />
-            <Route path="/contact" element={<Contact />} />
-            {/* Overseas Routes */}
-            <Route path="/overseas-training" element={<OverseasTranning />} />
-            <Route path="/overseas-admission" element={<RedirectToOverseas />} />
-            <Route 
-              path="/portal" 
-              element={
-                <PlaceholderPage 
-                  title="Student Portal" 
-                  description="Login and access your dashboard." 
-                />
-              } 
-            />
-            <Route 
-              path="/admin" 
-              element={
-                <PlaceholderPage 
-                  title="Admin Dashboard" 
-                  description="Manage courses, students, and enquiries." 
-                />
-              } 
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+            {/* Subtle Background Pattern (Optional Soft Texture) */}
+            <div className="fixed inset-0 bg-[radial-gradient(#d8dde6_0.8px,transparent_1px)] bg-[length:40px_40px] opacity-40 pointer-events-none" />
+
+            <Routes>
+              <Route path="/" element={<Index />} />
+              <Route path="/courses" element={<Courses />} />
+              <Route path="/courses/:id" element={<CourseDetails />} />
+              <Route path="/enroll/:id" element={<Enroll />} />
+              <Route path="/online-training" element={<OnlineTraining />} />
+              <Route path="/classroom-training" element={<ClassroomTraining />} />
+              <Route path="/corporate-training" element={<CorporateTraining />} />
+              <Route path="/placements" element={<Placements />} />
+              <Route path="/blog" element={<Blog raisedShadow={undefined} insetShadow={undefined} />} />
+              <Route path="/about" element={<About raisedShadow={undefined} insetShadow={undefined} />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/enquiryform" element={<EnquiryForm />} />
+
+              {/* Overseas Routes */}
+              <Route path="/overseas-training" element={<OverseasTranning />} />
+              <Route path="/overseas-admission" element={<RedirectToOverseas />} />
+              <Route
+                path="/portal"
+                element={
+                  <PlaceholderPage
+                    title="Student Portal"
+                    description="Login and access your dashboard."
+                  />
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <PlaceholderPage
+                    title="Admin Dashboard"
+                    description="Manage courses, students, and enquiries."
+                  />
+                }
+              />
+              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </div>
+        </EnquiryProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
