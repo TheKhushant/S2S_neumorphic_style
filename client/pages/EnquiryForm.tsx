@@ -160,10 +160,13 @@ export default function EnquiryForm() {
                                             </option>
                                             <option value="G H Raisoni College of Engineering">G H Raisoni College of Engineering</option>
                                             <option value="St. Vincent Pallotti College of Engineering and Technology">
-                                                St. Vincent Pallotti College of Engineering and Technology
+                                                St. Vincent Pallotti College of Engineering and Technology </option>
+                                            <option value="Suryoday College of Engineering and Technology">
+                                                Suryoday College of Engineering and Technology
                                             </option>
-                                            {/* Add remaining colleges... */}
-                                            <option value="Other">Other</option>
+                                            <option className="font-bold" value="Other">Other</option>
+                                            {/* <option value="Other">Other</option>    */}
+
                                         </select>
                                     </div>
 
@@ -252,14 +255,165 @@ export default function EnquiryForm() {
                                         </div>
                                     </motion.div>
                                 )}
+                                {/* ====================== COURSE ====================== */}
+                                {formData.enquiryFor === "Course" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="grid grid-cols-1 gap-6"   // Single column (only 1 field)
+                                    >
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Which Course?</label>
+                                            <select
+                                                name="courseName"
+                                                value={formData.courseName}
+                                                onChange={handleChange}
+                                                className={`w-full p-4 rounded-3xl bg-[#e0e5ec] ${insetShadow} outline-none`}
+                                            >
+                                                <option value="">Select Course</option>
+                                                <option value="Service Now">Service Now</option>
+                                                <option value="Data Analytics">Data Analytics</option>
+                                                <option value="DataBricks">DataBricks</option>
+                                                <option value="AI ML">AI & Machine Learning</option>
+                                            </select>
+                                        </div>
+                                    </motion.div>
+                                )}
 
+                                {/* ====================== JOB ====================== */}
+                                {formData.enquiryFor === "Job" && (
+                                    <motion.div
+                                        initial={{ opacity: 0, height: 0 }}
+                                        animate={{ opacity: 1, height: "auto" }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="space-y-6"
+                                    >
+                                        {/* Job Type - Always full width */}
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700 mb-2">Job Type</label>
+                                            <div className="flex gap-3">
+                                                {["Tech", "Non-Tech"].map((type) => (
+                                                    <button
+                                                        key={type}
+                                                        type="button"
+                                                        onClick={() => setFormData(prev => ({ ...prev, jobType: type }))}
+                                                        className={`flex-1 py-4 rounded-3xl font-medium ${formData.jobType === type
+                                                            ? "bg-gradient-to-r from-[#e5bcfb] to-[#c084fc] text-white"
+                                                            : `bg-[#e0e5ec] ${raisedShadow}`
+                                                            }`}
+                                                    >
+                                                        {type}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Job Category + Experience - 2 Column on Large Screen */}
+                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                            {formData.jobType && (
+                                                <div>
+                                                    <label className="block text-sm font-medium text-gray-700 mb-2">Job Role / Category</label>
+                                                    <select
+                                                        name="jobCategory"
+                                                        value={formData.jobCategory}
+                                                        onChange={handleChange}
+                                                        className={`w-full p-4 rounded-3xl bg-[#e0e5ec] ${insetShadow} outline-none`}
+                                                    >
+                                                        <option value="">Select Role</option>
+                                                        {formData.jobType === "Tech" ? (
+                                                            <>
+                                                                <option value="Fullstack Developer">Fullstack Developer</option>
+                                                                <option value="AI ML Engineer">AI/ML Engineer</option>
+                                                                <option value="Data Analyst">Data Analyst</option>
+                                                                <option value="Java Developer">Java Developer</option>
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <option value="BPO / Calling">BPO / Calling</option>
+                                                                <option value="Service Now">Service Now</option>
+                                                                <option value="Electronics">Electronics</option>
+                                                            </>
+                                                        )}
+                                                    </select>
+                                                </div>
+                                            )}
+
+                                            <div>
+                                                <label className="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
+                                                <div className="flex gap-3">
+                                                    {["Fresher", "Experienced"].map((level) => (
+                                                        <button
+                                                            key={level}
+                                                            type="button"
+                                                            onClick={() => setFormData(prev => ({ ...prev, experience: level }))}
+                                                            className={`flex-1 py-4 rounded-3xl font-medium ${formData.experience === level
+                                                                ? "bg-gradient-to-r from-[#e5bcfb] to-[#c084fc] text-white"
+                                                                : `bg-[#e0e5ec] ${raisedShadow}`
+                                                                }`}
+                                                        >
+                                                            {level}
+                                                        </button>
+                                                    ))}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                )}
                                 {/* Course and Job sections remain same - you can keep them as they were */}
                                 {/* ... (Copy your previous Course and Job conditional blocks here) ... */}
 
                             </AnimatePresence>
 
                             {/* Whom to Meet - Keep your existing code */}
+                            <div>
+                                <label className="block text-sm font-medium text-gray-700 mb-3">
+                                    Whom would you like to meet?
+                                </label>
 
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                    {["Mr. Allan Abhraham", "Mr. Viraj Patle", "Dr. N. G. Alvi", "Mrs. Manisha Mali", "Other"].map((person) => (
+                                        <label
+                                            key={person}
+                                            className={`flex items-center gap-3 p-4 rounded-3xl cursor-pointer transition-all ${formData.whomToMeet === person
+                                                ? "bg-gradient-to-r from-[#e5bcfb] to-[#c084fc] text-white shadow-[inset_px_4px_8px_#bebebe,inset_-4px_-4px_8px_#ffffff]"
+                                                : `bg-[#e0e5ec] ${raisedShadow} hover:-translate-y-0.5`
+                                                }`}
+                                        >
+                                            <input
+                                                type="radio"
+                                                name="whomToMeet"
+                                                value={person}
+                                                checked={formData.whomToMeet === person}
+                                                onChange={handleChange}
+                                                className="w-5 h-5 accent-purple-500"
+                                            />
+                                            <span className="font-medium">{person}</span>
+                                        </label>
+                                    ))}
+                                </div>
+
+                                {/* Other Name Input */}
+                                <AnimatePresence>
+                                    {formData.whomToMeet === "Other" && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: "auto" }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            className="mt-4"
+                                        >
+                                            <input
+                                                type="text"
+                                                name="otherName"
+                                                value={formData.otherName}
+                                                onChange={handleChange}
+                                                placeholder="Enter full name"
+                                                className={`w-full p-4 rounded-3xl bg-[#e0e5ec] ${insetShadow} outline-none`}
+                                            />
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
+                            </div>
                             {/* Submit Button */}
                             <motion.button
                                 whileHover={{ scale: 1.03 }}
