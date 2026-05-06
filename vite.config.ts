@@ -9,7 +9,7 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
     fs: {
-      allow: ["./", "./client", "./shared"], // ✅ allow root folder too
+      allow: ["./", "./client", "./shared"], //  allow root folder too
       deny: [".env", ".env.*", "*.{crt,pem}", "**/.git/**", "server/**"],
     },
   },
